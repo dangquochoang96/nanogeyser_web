@@ -1,0 +1,100 @@
+CKEDITOR.plugins.add( 'svgedit', {
+    requires: 'widget',
+
+    icons: 'svgedit',
+
+    init: function( editor ) {
+        editor.widgets.add( 'svgedit', {
+
+            button: 'Create a simple box',
+			mask: false,
+			parts: {
+					span: 'span'
+			},
+			template: '<span class="svg_content" style="display:inline-block" ></span>',
+
+            editables: {
+                title: {
+                    selector: '.simplebox-title',
+                    allowedContent: 'br strong em'
+                },
+                content: {
+                    selector: '.simplebox-content',
+                    allowedContent: 'p br ul ol li strong em'
+                }
+            },
+			init: function() {
+					var iframe = this.parts.span.getChild( 0 );
+
+					// Check if span contains iframe and create it otherwise.
+					if ( !iframe || iframe.type != CKEDITOR.NODE_ELEMENT || !iframe.is( 'iframe' ) ) {
+						iframe = new CKEDITOR.dom.element( 'iframe' );
+						iframe.setAttributes( {
+							style: 'border:0;width:0;height:0',
+							scrolling: 'no',
+							frameborder: 0,
+							allowTransparency: true,
+							src: CKEDITOR.plugins.mathjax.fixSrc
+						} );
+						this.parts.span.append( iframe );
+					}
+					
+					this.once( 'ready', function() {
+							iframe.setStyles( {
+								height: '100px',
+								width: '100px',
+								display: 'inline',
+								'vertical-align': 'middle'
+							} );
+							doc = iframe.getFrameDocument();
+							this.setData("svg","test");
+							doc.write('<!DOCTYPE html><html><body id="body">'+this.data.svg+'</body></html>');
+							var ist = this;
+							doc.$.getElementById("body").onclick = function(){
+								alert("called");
+								
+							}
+					} );
+			},
+			data: function() {
+					this.element.$.childNodes[0].innerHTML = this.data.svg;
+			},
+
+            upcast: function( el,data ) {
+					
+					if ( !( el.name == 'span' && el.hasClass( "svg_content" ) ) )
+						{return;};
+
+					if ( el.children.length > 1 || el.children[ 0 ].type != CKEDITOR.NODE_TEXT )
+						return;
+
+					data.svg = el.children[ 0 ].innerText;
+
+					// Add style display:inline-block to have proper height of widget wrapper and mask.
+					var attrs = el.attributes;
+
+					if ( attrs.style )
+						attrs.style += ';display:inline-block';
+					else
+						attrs.style = 'display:inline-block';
+
+					// Add attribute to prevent deleting empty span in data processing.
+					attrs[ 'data-cke-survive' ] = 1;
+
+					el.children[ 0 ].remove();
+
+					return el;
+            },
+			downcast: function( el ) {
+					el.children[ 0 ].replaceWith( new CKEDITOR.htmlParser.text( this.data.svg ));
+					// Remove style display:inline-block.
+					var attrs = el.attributes;
+					attrs.style = attrs.style.replace( /display:\s?inline-block;?\s?/, '' );
+					if ( attrs.style === '' )
+						delete attrs.style;
+			}
+        } );
+
+
+    }
+} );

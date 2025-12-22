@@ -1,0 +1,109 @@
+.contact-social-list {
+    bottom: 40px;
+    left: 20px;
+    position: fixed;
+    z-index: 1;
+}
+@media (max-width: 576px) {
+    .contact-social-list {
+        display: none;
+    }
+}
+.contact-social-list a {
+    font-size: 40px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contact-social-list a.social-facebook {
+    color: #1877f2;
+}
+.contact-social-list li {
+    list-style: none;
+    background: #ffffff;
+    border-radius: 128px;
+    box-shadow: 0 4px 32px hsla(0, 0%, 46%, 0.12);
+    height: 64px;
+    position: relative;
+    width: 64px;
+}
+.contact-social-list .contact-phone {
+    background: #ea9b22;
+    transition: box-shadow 0.3s linear;
+}
+.contact-social-list .contact-phone a {
+    color: #fff;
+    font-size: 32px;
+}
+.contact-social-list .contact-phone .phone-number {
+    background: rgba(234, 155, 34, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 32px hsla(0, 0%, 46%, 0.12);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    left: 50%;
+    opacity: 0;
+    padding: 9px 12px 9px 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-20%, -50%);
+    transition: 0.3s linear;
+    white-space: nowrap;
+    z-index: -1;
+}
+.contact-social-list .contact-phone:hover .phone-number {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+.contact-social-list .contact-phone:hover {
+    box-shadow: 0 0 10px 0 #ea9b22;
+}
+.contact-social-list li:not(:last-child) {
+    margin-bottom: 24px;
+}
+.contact-social-mobile {
+    background-color: #fff;
+    bottom: 0;
+    box-shadow: 0 4px 32px hsla(0, 0%, 46%, 0.12);
+    display: none;
+    height: 75px;
+    left: 0;
+    padding: 16px;
+    position: fixed;
+    right: 0;
+    z-index: 1;
+}
+@media (max-width: 576px) {
+    .contact-social-mobile {
+        align-items: center;
+        -moz-column-gap: 4px;
+        column-gap: 4px;
+        display: flex;
+    }
+}
+.contact-social-mobile .btn {
+    font-size: 12px;
+    margin-left: 0 !important;
+}
+.contact-social-mobile .btn:last-child {
+    flex-grow: 1;
+}
+.contact-social-mobile a {
+    border: 1px #ea9b22 solid;
+}
+.contact-social-mobile a:nth-child(3) {
+   background: #ea9b22;
+}
+.banner-wrap {
+    -moz-column-gap: 16px;
+    column-gap: 16px;
+    display: grid;
+    /*grid-template-columns: repeat(auto-fit, minmax(0, 1fr));*/
+}
+.banner-wrap img {
+    border-radius: 8px;
+    width: 100%;
+}

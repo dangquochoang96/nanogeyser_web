@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+    RewriteBase /
+
+    Redirect /loi-loc-nuoc/geyser-pp5mcr /geyser-pp5mcr-19
+    Redirect /loi-loc-nuoc/geyser-cbc /geyser-cbc-23
+    Redirect /loi-loc-nuoc/geyser-pp1mcr /geyser-pp1mcr-21
+    Redirect /loi-loc-nuoc/geyser-pp2in1-ca /geyser-pp2in1-ca-15
+    Redirect /loi-loc-nuoc/geyser-gac /geyser-gac-20
+    Redirect /loi-loc-nuoc/geyser-ro /geyser-ro-14
+    Redirect /loi-loc-nuoc/geyser-pp2in1-gac /geyser-pp2in1-gac-5
+
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

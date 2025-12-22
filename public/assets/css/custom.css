@@ -1,0 +1,94 @@
+/*
+[Custom Stylesheet]
+
+Project: QuickFix - Multipurpose Servicing and Repairing HTML Template
+Version: 1.0
+Author : themelooks.com
+*/
+
+/* CSS cho menu có con */
+.has-children {
+    position: relative;
+}
+
+.has-children > ul.ul-none {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 1000;
+    left: 0;
+    top: 100%;
+    min-width: 200px;
+    list-style: none;
+    margin: 0;
+}
+
+.has-children > ul.ul-none li {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.has-children > ul.ul-none li a {
+    display: block;
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.has-children > ul.ul-none li a:hover {
+    background-color: #f5f5f5;
+}
+
+.has-children.active > ul.ul-none {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.parent-link {
+    cursor: pointer;
+}
+
+/* CSS cho menu mobile */
+@media screen and (max-width: 991px) {
+    .has-children > ul.ul-none {
+        position: static;
+        background: #65a63a;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        transform: none;
+        opacity: 1;
+        display: none;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .has-children.active > ul.ul-none {
+        display: block;
+    }
+    
+    .has-children > ul.ul-none li {
+        padding: 0;
+    }
+    
+    .has-children > ul.ul-none li a {
+        color: #fff;
+        padding: 10px 15px;
+        border-bottom: 1px solid #fff;
+    }
+    
+    .has-children > ul.ul-none li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Đảm bảo menu con hiển thị đúng trong container mobile */
+    .menu-mb1 .has-children > ul.ul-none {
+        padding-left: 20px;
+    }
+}

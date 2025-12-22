@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<!-- removed for now, causes problems in Firefox: manifest="svg-editor.manifest" -->
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+<link rel="icon" type="image/png" href="images/logo.png"/>
+
+<!--{if svg_edit_release}>
+  <link rel="stylesheet" href="css/method-draw.compiled.css" type="text/css"/>
+<!{else}-->
+  <link rel="stylesheet" href="lib/jgraduate/css/jPicker.css" type="text/css"/>
+  <link rel="stylesheet" href="lib/jgraduate/css/jgraduate.css" type="text/css"/>
+  <link rel="stylesheet" href="css/method-draw.css" type="text/css"/>
+  <link rel="stylesheet" href="css/fonts.css" type="text/css"/>
+<!--{endif}-->
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+
+  <script type="text/javascript" src="lib/jquery.js"></script>
+
+
+<!--{if svg_edit_release}>
+  <script type="text/javascript" src="method-draw.compiled.js"></script>
+<!{else}-->
+  <script type="text/javascript" src="lib/touch.js"></script>
+  <script type="text/javascript" src="lib/js-hotkeys/jquery.hotkeys.min.js"></script>
+  <script type="text/javascript" src="lib/jquerybbq/jquery.bbq.min.js"></script>
+  <script type="text/javascript" src="icons/jquery.svgicons.js"></script>
+  <script type="text/javascript" src="lib/jgraduate/jquery.jgraduate.js"></script>
+  <script type="text/javascript" src="lib/contextmenu/jquery.contextMenu.js"></script>
+  <script type="text/javascript" src="lib/jquery-ui/jquery-ui-1.8.17.custom.min.js"></script>
+  <script type="text/javascript" src="src/browser.js"></script>
+  <script type="text/javascript" src="src/svgtransformlist.js"></script>
+  <script type="text/javascript" src="src/math.js"></script>
+  <script type="text/javascript" src="src/units.js"></script>
+  <script type="text/javascript" src="src/svgutils.js"></script>
+  <script type="text/javascript" src="src/sanitize.js"></script>
+  <script type="text/javascript" src="src/history.js"></script>
+  <script type="text/javascript" src="src/select.js"></script>
+  <script type="text/javascript" src="src/draw.js"></script>
+  <script type="text/javascript" src="src/path.js"></script>
+  <script type="text/javascript" src="src/dialog.js"></script>
+  <script type="text/javascript" src="src/svgcanvas.js"></script>
+  <script type="text/javascript" src="src/method-draw.js"></script>
+  <script type="text/javascript" src="lib/jquery-draginput.js"></script>
+  <script type="text/javascript" src="lib/contextmenu.js"></script>
+  <script type="text/javascript" src="lib/jgraduate/jpicker.min.js"></script>
+  <script type="text/javascript" src="lib/mousewheel.js"></script>
+  <script type="text/javascript" src="extensions/ext-eyedropper.js"></script>
+  <script type="text/javascript" src="extensions/ext-shapes.js"></script>
+  <script type="text/javascript" src="extensions/ext-grid.js"></script>
+  <script type="text/javascript" src="lib/requestanimationframe.js"></script>
+  <script type="text/javascript" src="lib/taphold.js"></script>
+<!--{endif}-->
+
+
+<title>Bản vẽ SVG</title>
+</head>
+<body>
+<div id="svg_editor">
+
+<div id="rulers">
+	<div id="ruler_corner"></div>
+	<div id="ruler_x">
+	  <div id="ruler_x_cursor"></div>
+		<div>
+			<canvas height="15"></canvas>
+		</div>
+	</div>
+	<div id="ruler_y">
+	  <div id="ruler_y_cursor"></div>
+		<div>
+			<canvas width="15"></canvas>
+		</div>
+	</div>
+</div>
+
+<div id="workarea">
+<div id="svgcanvas" style="position:relative">
+
+</div>
+</div>
+
+<div id="menu_bar">
+  <a class="menu">
+    <div class="menu_title" id="logo"></div>
+    <!--<div class="menu_list">-->
+      <!--<div id="tool_about" class="menu_item">About this Editor...</div>-->
+      <!--<div class="separator"></div>-->
+      <!--<div id="tool_about" class="menu_item">Keyboard Shortcus...</div>-->
+    <!--</div>-->
+  </a>
+  
+  <div class="menu">
+  	<div class="menu_title">Tài liệu</div>
+  	<div class="menu_list" id="file_menu"> 
+  		<div id="tool_clear" class="menu_item">Xóa</div>
+  		<div id="tool_open" class="menu_item" style="display: none;"><div id="fileinputs"></div>Mở tệp SVG...</div>
+  		<div id="tool_import" class="menu_item" style="display: none;"><div id="fileinputs_import"></div>Nhập từ ảnh...</div>
+  		<div id="tool_save" class="menu_item">Lưu thành ảnh... <span class="shortcut">⌘S</span></div>
+  		<div  class="menu_item done">Chèn vào bài viết</div>
+  	</div>
+  </div>
+
+  <div class="menu">
+    <div class="menu_title">Chỉnh sửa</div>
+  	<div class="menu_list" id="edit_menu">
+  		<div class="menu_item" id="tool_undo">Hoàn tác <span class="shortcut">⌘Z</span></div>
+  		<div class="menu_item" id="tool_redo">Làm lại <span class="shortcut">⌘Y</span></div>
+  		<div class="separator"></div>
+  		<div class="menu_item action_selected disabled" id="tool_cut">Cắt <span class="shortcut">⌘X</span></div>
+  		<div class="menu_item action_selected disabled" id="tool_copy">Sao chép <span class="shortcut">⌘C</span></div>
+			<div class="menu_item action_selected disabled" id="tool_paste">Dán <span class="shortcut">⌘V</span></div>
+  		<div class="menu_item action_selected disabled" id="tool_clone">Nhân đôi <span class="shortcut">⌘D</span></div>
+			<div class="menu_item action_selected disabled" id="tool_delete">Xóa <span>⌫</span></div>
+    </div>
+  </div>
+  
+  <div class="menu">
+    <div class="menu_title">Đối tượng</div>
+  	<div class="menu_list"  id="object_menu">
+			<div class="menu_item action_selected disabled" id="tool_move_top">Đưa lên trên cùng <span class="shortcut">⌘⇧↑</span></div>
+			<div class="menu_item action_selected disabled" id="tool_move_up">Đưa lên trên <span class="shortcut">⌘↑</span></div>
+			<div class="menu_item action_selected disabled" id="tool_move_down">Đưa xuống dưới <span class="shortcut">⌘↓</span></div>
+			<div class="menu_item action_selected disabled" id="tool_move_bottom">Đưa xuống dưới cùng <span class="shortcut">⌘⇧↓</span></div>
+			<div class="separator"></div>
+			<div class="menu_item action_multi_selected disabled" id="tool_group">Gộp nhóm <span class="shortcut">⌘G</span></div>
+			<div class="menu_item action_group_selected disabled" id="tool_ungroup">Hủy gộp nhóm <span class="shortcut">⌘⇧G</span></div>
+			<div class="separator"></div>
+			<div class="menu_item action_path_convert_selected disabled" id="tool_topath">Chuyển thành nét vẽ</div>
+			<div class="menu_item action_path_selected disabled" id="tool_reorient">Định hướng lại nét vẽ</div>
+    </div>
+  </div>
+
+  <div class="menu">
+    <div class="menu_title">Hiển thị</div>
+  	<div class="menu_list" id="view_menu">
+  	    <div class="menu_item push_button_pressed" id="tool_rulers">Hiển thị thước</div>
+  	    <div class="menu_item" id="tool_wireframe">View Wireframe</div>
+  	    <div class="menu_item" id="tool_snap">Căn theo lưới</div>
+  	    <div class="separator"></div>
+    		<div class="menu_item" id="tool_source">Mã nguồn... <span class="shortcut">⌘U</span></div>
+    </div>
+  </div>
+  <div class="menu" >
+  <div class="menu_title done" style='color: #fc0;font-weight: bold;'>
+  Chèn vào bài viết
+  </div>  
+  </div>
+  <div class="menu" >
+    <div onclick ="return top.close_editor();" class="menu_title" style='color: #f00;font-weight: bold;'>
+  Hủy bỏ
+  </div>
+  </div>
+
+  
+</div>
+
+<div id="tools_top" class="tools_panel">
+
+	<div id="canvas_panel" class="context_panel">
+	  
+	  <h4 class="clearfix">Khung vẽ</h4>
+	  
+		<label data-title="Change canvas width">
+			<input size="3" id="canvas_width" type="text" pattern="[0-9]*" />
+			<span class="icon_label">Chiều rộng</span>
+		</label>
+		<label data-title="Change canvas height">
+			<input id="canvas_height" size="3" type="text" pattern="[0-9]*" />
+			<span class="icon_label">Chiều cao</span>
+		</label>
+		  	
+  	
+  	<label data-title="Thay đổi màu sắc" class="draginput">
+    	<span>Màu nền</span>
+  		<div id="color_canvas_tools">
+  		  <div class="color_tool active" id="tool_canvas">
+    		  <div class="color_block">
+    			  <div id="canvas_bg"></div>
+    			  <div id="canvas_color"></div>
+    		  </div>
+    		</div>
+    	</div>
+  	</label>
+
+	  <div class="draginput">
+	    <span>Sizes</span>
+  		<select id="resolution">
+  			<option id="selectedPredefined" selected="selected">Tùy biến</option>
+  			<option>640x480</option>
+  			<option>800x600</option>
+  			<option>1024x768</option>
+  			<option>1280x960</option>
+  			<option>1600x1200</option>
+  			<option id="fitToContent" value="content">Căn vừa theo nội dung</option>
+  		</select>
+  		<div class="caret"></div>
+  		<label id="resolution_label">Tùy chỉnh</label>
+		</div>
+
+	</div>
+	
+	<div id="rect_panel" class="context_panel">
+	  <h4 class="clearfix">Hình chữ nhật</h4>
+	  <label>
+			<input id="rect_x" class="attr_changer" data-title="Change X coordinate" size="3" data-attr="x" pattern="[0-9]*" />
+			<span>X</span> 
+		</label>
+		<label>
+		  <input id="rect_y" class="attr_changer" data-title="Change Y coordinate" size="3" data-attr="y" pattern="[0-9]*" />
+			<span>Y</span> 
+		</label>
+		<label id="rect_width_tool attr_changer" data-title="Change rectangle width">
+			<input id="rect_width" class="attr_changer" size="3" data-attr="width" type="text" pattern="[0-9]*" />
+			<span class="icon_label">Rộng</span>
+		</label>
+		<label id="rect_height_tool" data-title="Change rectangle height">
+			<input id="rect_height" class="attr_changer" size="3" data-attr="height" type="text" pattern="[0-9]*" />
+			<span class="icon_label">Chiều cao</span>
+		</label>
+	</div>
+	
+	<div id="path_panel" class="context_panel clearfix">
+	  <h4 class="clearfix">Nét vẽ</h4>
+	  <label>
+		  <input id="path_x" class="attr_changer" data-title="Change ellipse's cx coordinate" size="3" data-attr="x" pattern="[0-9]*" />
+		  <span>X</span>
+		</label>
+		<label>
+		  <input id="path_y" class="attr_changer" data-title="Change ellipse's cy coordinate" size="3" data-attr="y" pattern="[0-9]*" />
+		  <span>Y</span>
+		</label>
+	</div>
+
+	<div id="image_panel" class="context_panel clearfix">
+	<h4>Image</h4>
+		<label>
+			<input id="image_x" class="attr_changer" data-title="Change X coordinate" size="3" data-attr="x"  pattern="[0-9]*"/>
+		  <span>X</span> 
+		</label>
+		<label>
+		  <input id="image_y" class="attr_changer" data-title="Change Y coordinate" size="3" data-attr="y"  pattern="[0-9]*"/>
+		  <span>Y</span> 
+		</label>
+		<label>
+		  <input id="image_width" class="attr_changer" data-title="Change image width" size="3" data-attr="width" pattern="[0-9]*" />
+		  <span class="icon_label">Độ rộng</span>
+		</label>
+		<label>
+		  <input id="image_height" class="attr_changer" data-title="Change image height" size="3" data-attr="height" pattern="[0-9]*" />
+		  <span class="icon_label">Chiều cao</span>
+		</label>
+  </div>
+  
+  <div id="circle_panel" class="context_panel">
+    <h4>Đường tròn</h4>
+		<label id="tool_circle_cx">
+		  <span>Tâm X</span>
+		  <input id="circle_cx" class="attr_changer" title="Change circle's cx coordinate" size="3" data-attr="cx"/>
+		</label>
+		<label id="tool_circle_cy">
+		  <span>Tâm Y</span>
+		  <input id="circle_cy" class="attr_changer" title="Change circle's cy coordinate" size="3" data-attr="cy"/>
+		</label>
+		<label id="tool_circle_r">
+		  <span>Bán kính</span>
+		  <input id="circle_r" class="attr_changer" title="Change circle's radius" size="3" data-attr="r"/>
+		</label>
+	</div>
+
+	<div id="ellipse_panel" class="context_panel clearfix">
+	  <h4>Đường Elip</h4>
+		<label id="tool_ellipse_cx">
+		  <input id="ellipse_cx" class="attr_changer" data-title="Change ellipse's cx coordinate" size="3" data-attr="cx" pattern="[0-9]*" />
+		  <span>X</span>
+		</label>
+		<label id="tool_ellipse_cy">
+		  <input id="ellipse_cy" class="attr_changer" data-title="Change ellipse's cy coordinate" size="3" data-attr="cy" pattern="[0-9]*" />
+		  <span>Y</span>
+		</label>
+		<label id="tool_ellipse_rx">
+		  <input id="ellipse_rx" class="attr_changer" data-title="Change ellipse's x radius" size="3" data-attr="rx" pattern="[0-9]*" />
+	    <span>Bán kính X</span>
+		</label>
+		<label id="tool_ellipse_ry">
+		  <input id="ellipse_ry" class="attr_changer" data-title="Change ellipse's y radius" size="3" data-attr="ry" pattern="[0-9]*" />
+		  <span>Bán kính Y</span>
+		</label>
+	</div>
+
+	<div id="line_panel" class="context_panel clearfix">
+	  <h4>Đường thẳng</h4>
+		<label id="tool_line_x1">
+		  <input id="line_x1" class="attr_changer" data-title="Change line's starting x coordinate" size="3" data-attr="x1" pattern="[0-9]*" />
+		  <span>Điểm đầu X</span>
+		</label>
+		<label id="tool_line_y1">
+		  <input id="line_y1" class="attr_changer" data-title="Change line's starting y coordinate" size="3" data-attr="y1" pattern="[0-9]*" />
+		  <span>Điểm đầu Y</span>
+		</label>
+		<label id="tool_line_x2">
+		  <input id="line_x2" class="attr_changer" data-title="Change line's ending x coordinate" size="3" data-attr="x2"   pattern="[0-9]*" />
+		  <span>Điểm cuối X</span>
+		</label>
+		<label id="tool_line_y2">
+		  <input id="line_y2" class="attr_changer" data-title="Change line's ending y coordinate" size="3" data-attr="y2"   pattern="[0-9]*" />
+		  <span>Điểm cuối Y</span>
+		</label>
+	</div>
+
+	<div id="text_panel" class="context_panel">
+	  <h4>Văn bản</h4>
+		<label>
+		  <input id="text_x" class="attr_changer" data-title="Change text x coordinate" size="3" data-attr="x" pattern="[0-9]*" />
+		  <span>X</span>
+		</label>
+		<label>
+		  <input id="text_y" class="attr_changer" data-title="Change text y coordinate" size="3" data-attr="y" pattern="[0-9]*" />
+		  <span>Y</span>
+		</label>
+		
+		<div class="toolset draginput select twocol" id="tool_font_family">
+				<!-- Font family -->
+			<span>Font</span>
+		  <div id="preview_font" style="font-family: Helvetica, Arial, sans-serif;">Arial</div>
+		  <div class="caret"></div>
+			<input id="font_family" data-title="Change Font Family" size="12" type="hidden" />
+			<select id="font_family_dropdown">
+					<option value="Helvetica, Arial, sans-serif" selected="selected">Arial</option>
+					<option value="'Trebuchet MS', Gadget, sans-serif">Trebuchet</option>
+					<option value="Georgia, Times, 'Times New Roman', serif">Georgia</option>
+					<option value="'Palatino Linotype', 'Book Antiqua', Palatino, serif">Palatino</option>
+					<option value="'Times New Roman', Times, serif">Times</option>
+					<option value="'Courier New', Courier, monospace">Courier</option>
+			</select>
+      <div class="tool_button" id="tool_bold" data-title="Chữ đậm [B]">B</div>
+      <div class="tool_button" id="tool_italic" data-title="Chữ nghiêng [I]">i</div>
+		</div>
+
+		<label id="tool_font_size" data-title="Đổi phông chữ">
+			<input id="font_size" size="3" value="0" />
+			<span id="font_sizeLabel" class="icon_label">Phông chữ</span>
+		</label>
+		<!-- Not visible, but still used -->
+		<input id="text" type="text" size="35"/>
+	</div>
+
+	<!-- formerly gsvg_panel -->
+	<div id="container_panel" class="context_panel clearfix">
+	</div>
+	
+	<div id="use_panel" class="context_panel clearfix">
+		<div class="tool_button clearfix" id="tool_unlink_use" data-title="Break link to reference element (make unique)">Break link reference</div>
+	</div>
+	
+	<div id="g_panel" class="context_panel clearfix">
+		<h4>Group</h4>
+		<label>
+		  <input id="g_x" class="attr_changer" data-title="Change groups's x coordinate" size="3" data-attr="x" pattern="[0-9]*" />
+		  <span>X</span>
+		</label>
+		<label>
+		  <input id="g_y" class="attr_changer" data-title="Change groups's y coordinate" size="3" data-attr="y" pattern="[0-9]*" />
+		  <span>Y</span>
+		</label>
+	</div>
+	
+	<div id="path_node_panel" class="context_panel clearfix">
+	  <h4>Edit Path</h4>
+
+		<label id="tool_node_x">
+			<input id="path_node_x" class="attr_changer" data-title="Change node's x coordinate" size="3" data-attr="x" />
+		  <span>X</span>
+		</label>
+		<label id="tool_node_y">
+			<input id="path_node_y" class="attr_changer" data-title="Change node's y coordinate" size="3" data-attr="y" />
+		  <span>Y</span>
+		</label>
+		
+		<div id="segment_type" class="draginput label">
+		  <span>Segment Type</span>
+  		<select id="seg_type" data-title="Change Segment type">
+  			<option id="straight_segments" selected="selected" value="4">Straight</option>
+  			<option id="curve_segments" value="6">Đường cong</option>
+  		</select>
+  		<div class="caret"></div>
+  		<label id="seg_type_label">Straight</label>
+		</div>
+		
+		<!--
+		<label class="draginput checkbox" data-title="Link Control Points">
+		  <span>Linked Control Points</span>
+		  <div class="push_bottom"><input type="checkbox" id="tool_node_link" checked="checked" /></div>
+		</label>
+	-->
+		
+		<div class="clearfix"></div>
+		<div class="tool_button" id="tool_node_clone" title="Adds a node">Thêm nút</div>
+		<div class="tool_button" id="tool_node_delete" title="Delete Node">Xóa nút</div>
+		<div class="tool_button" id="tool_openclose_path" title="Open/close sub-path">Mở nét vẽ</div>
+		<!--<div class="tool_button" id="tool_add_subpath" title="Add sub-path"></div>-->
+	</div>
+	
+	<!-- Buttons when a single element is selected -->
+	<div id="selected_panel" class="context_panel">
+
+		<label id="tool_angle" data-title="Change rotation angle" class="draginput">
+			<input id="angle" class="attr_changer" size="2" value="0" data-attr="transform" data-min="-180" data-max="180" type="text"/>
+			<span class="icon_label">Xoay</span>
+			<div id="tool_angle_indicator">
+			  <div id="tool_angle_indicator_cursor"></div>
+			</div>
+		</label>
+		
+			<label class="toolset" id="tool_opacity" data-title="Change selected item opacity">
+  			<input id="group_opacity" class="attr_changer" data-attr="opacity" data-multiplier="0.01" size="3" value="100" step="5" min="0" max="100" />
+  		  <span id="group_opacityLabel" class="icon_label">Độ mờ</span>
+  		</label>
+		
+		<div class="toolset" id="tool_blur" data-title="Hiệu ứng mờ">
+			<label>
+				<input id="blur" size="2" value="0" step=".1"  min="0" max="10" />
+			  <span class="icon_label">Làm mờ</span>
+			</label>
+		</div>
+		
+		<label id="cornerRadiusLabel" data-title="Đổi giá trị bo tròn góc">
+			<input id="rect_rx" size="3" value="0" data-attr="rx" class="attr_changer" type="text" pattern="[0-9]*" />
+		  <span class="icon_label">Bo tròn góc</span>
+		</label>
+		
+		<div class="clearfix"></div>
+		<div id="align_tools">
+  		<h4>Căn chỉnh</h4>
+  		<div class="toolset align_buttons" id="tool_position">
+  				<label>
+  				  <div class="col last clear" id="position_opts">
+    				  <div class="draginput_cell" id="tool_posleft" title="Căn trái"></div>
+          		<div class="draginput_cell" id="tool_poscenter" title="Căn giữa"></div>
+          		<div class="draginput_cell" id="tool_posright" title="Căn phải"></div>
+          		<div class="draginput_cell" id="tool_postop" title="Căn trên"></div>
+          		<div class="draginput_cell" id="tool_posmiddle" title="Căn giữa (dọc)"></div>
+          		<div class="draginput_cell" id="tool_posbottom" title="Căn dưới"></div>
+    				</div>
+  				</label>
+  		</div>		
+  	</div>
+	</div>
+	
+	<!-- Buttons when multiple elements are selected -->
+	<div id="multiselected_panel" class="context_panel clearfix">
+	  <h4 class="hidable">Đa phần tử</h4>
+	  
+		<div class="toolset align_buttons" style="position: relative">
+		  <label id="tool_align_relative" style="margin-top: 10px;"> 
+  			<select id="align_relative_to" title="Align relative to ...">
+  			<option id="selected_objects" value="selected">Align to objects</option>
+  			<option id="page" value="page">Align to page</option>
+  			</select>
+  		</label>
+		  <h4>.</h4>
+    		<div class="col last clear">
+      		<div class="draginput_cell" id="tool_alignleft" title="Align Left"></div>
+      		<div class="draginput_cell" id="tool_aligncenter" title="Align Center"></div>
+      		<div class="draginput_cell" id="tool_alignright" title="Align Right"></div>
+      		<div class="draginput_cell" id="tool_aligntop" title="Align Top"></div>
+      		<div class="draginput_cell" id="tool_alignmiddle" title="Align Middle"></div>
+      		<div class="draginput_cell" id="tool_alignbottom" title="Align Bottom"></div>
+    		</div>
+		</div>
+		<div class="clearfix"></div>
+
+	</div>
+	
+	<div id="stroke_panel" class="context_panel clearfix">
+  	<div class="clearfix"></div>
+  	<h4>Đường viền </h4>
+  	<div class="toolset" data-title="Change stroke">
+  		<label>
+  			<input id="stroke_width" size="2" value="5" data-attr="stroke-width" min="0" max="99" step="1" />
+  		  <span class="icon_label">Độ rộng</span>
+  		</label>
+  	</div>
+  	<div class="stroke_tool draginput"> 
+  	  <span>Dạng kẻ viền</span>
+  		<select id="stroke_style" data-title="Change stroke dash style">
+  			<option selected="selected" value="none">—</option>
+  			<option value="2,2">···</option>
+  			<option value="5,5">- -</option>
+  			<option value="5,2,2,2">-·-</option>
+  			<option value="5,2,2,2,2,2">-··-</option>
+  		</select>
+  		<div class="caret"></div>
+  		<label id="stroke_style_label">—</label>
+  	</div>
+		
+    <label style="display: none;">
+      <span class="icon_label">Stroke Join</span>
+    </label>
+    
+    <label  style="display: none;">
+      <span class="icon_label">Stroke Cap</span>
+  	</label>
+	</div>
+
+</div> <!-- tools_top -->
+	<div id="cur_context_panel">
+		
+	</div>
+
+
+<div id="tools_left" class="tools_panel">
+	<div class="tool_button" id="tool_select" title="Công cụ lựa chọn [V]"></div>
+	<div class="tool_button" id="tool_fhpath" title="Bút chì [P]"></div>
+	<div class="tool_button" id="tool_line" title="Vẽ đoạn thẳng [L]"></div>
+	<div class="tool_button" id="tool_rect" title="Vẽ hình chữ nhật  [R]"></div>
+	<div class="tool_button" id="tool_ellipse" title="Vẽ đường tròn [C]"></div>
+	<div class="tool_button" id="tool_path" title="Vẽ đường cong [P]"></div>
+	<div class="tool_button" id="tool_text" title="Chèn chữ [T]"></div>
+	<div class="tool_button" id="tool_zoom" title="Thu phóng [Z]"></div>
+	
+  <div id="color_tools">
+        <div id="tool_switch" title="Chuyển chế độ giữa màu viền và màu tô [X]"></div>
+  			<div class="color_tool active" id="tool_fill">
+  				<label class="icon_label" title="Đổi màu tô"></label>
+				  <div class="color_block">
+					  <div id="fill_bg"></div>
+					  <div id="fill_color" class="color_block"></div>
+				  </div>
+  			</div>
+
+  			<div class="color_tool" id="tool_stroke">
+  					<label class="icon_label" title="Đổi màu viền"></label>
+  				<div class="color_block">
+  					<div id="stroke_bg"></div>
+  					<div id="stroke_color" class="color_block" title="Đổi màu viền"></div>
+  				</div>
+  			</div>
+	</div>
+</div> <!-- tools_left -->
+
+<div id="tools_bottom" class="tools_panel">
+
+    <!-- Zoom buttons -->
+	<div id="zoom_panel" class="toolset" title="Change zoom level">
+		<div class="draginput select" id="zoom_label">
+  		<span  id="zoomLabel" class="zoom_tool icon_label"></span>
+  		<select id="zoom_select">
+  		  <option value="6">6%</option>
+  		  <option value="12">12%</option>
+  		  <option value="16">16%</option>
+  		  <option value="25">25%</option>
+  		  <option value="50">50%</option>
+  		  <option value="75">75%</option>
+  		  <option value="100"  selected="selected">100%</option>
+  		  <option value="150">150%</option>
+  		  <option value="200">200%</option>
+  		  <option value="300">300%</option>
+  		  <option value="400">400%</option>
+  		  <option value="600">600%</option>
+  		  <option value="800">800%</option>
+  		  <option value="1600">1600%</option>
+  		</select>
+  		<div class="caret"></div>
+  		<input id="zoom" size="3" value="100%" type="text" readonly="readonly" />
+		</div>
+	</div>
+
+	<div id="tools_bottom_3">
+		<div id="palette" title="Click to change fill color, shift-click to change stroke color"></div>
+	</div>
+</div>
+
+<!-- hidden divs -->
+<div id="color_picker"></div>
+
+</div> <!-- svg_editor -->
+
+<div id="svg_source_editor">
+	<div id="svg_source_overlay"></div>
+	<div id="svg_source_container">
+		<div id="save_output_btns">
+			<p id="copy_save_note">Copy the contents of this box into a text editor, then save the file with a .svg extension.</p>
+			<button id="copy_save_done">Hoàn tất</button>
+		</div>
+		<form>
+			<textarea id="svg_source_textarea" spellcheck="false"></textarea>
+		</form>
+		<div id="tool_source_back" class="toolbar_button">
+			<button id="tool_source_cancel" class="cancel">Hủy</button>
+			<button id="tool_source_save" class="ok">Lưu thay đổi</button>
+		</div>
+	</div>
+</div>
+
+<div id="base_unit_container">
+  <select id="base_unit">
+  	<option value="px">Pixels (điểm ảnh)</option>
+  	<option value="cm">Xen-ti-mét(cm)</option>
+  	<option value="mm">Mi-li-mét (mm)</option>
+  	<option value="in">Inch</option>
+  	<option value="pt">Điểm</option>
+  	<option value="pc">Picas</option>
+  	<option value="em">Ems</option>
+  	<option value="ex">Exs</option>
+  </select>
+</div>
+
+<div id="dialog_box">
+	<div id="dialog_box_overlay"></div>
+	<div id="dialog_container">
+		<div id="dialog_content"></div>
+		<div id="dialog_buttons"></div>
+	</div>
+</div>
+
+<ul id="cmenu_canvas" class="contextMenu">
+	<li><a href="#cut">Cắt <span class="shortcut">⌘X;</span></a></li>
+	<li><a href="#copy">Sao chép<span class="shortcut">⌘C</span></a></li>
+	<li><a href="#paste">Dán<span class="shortcut">⌘V</span></a></li>
+	<li class="separator"><a href="#delete">Xóa<span class="shortcut">⌫</span></a></li>
+	<li class="separator"><a href="#group">Gộp nhóm<span class="shortcut">⌘G</span></a></li>
+	<li><a href="#ungroup">Bỏ nhóm<span class="shortcut">⌘⇧G</span></a></li>
+  <li class="separator"><a href="#move_front">Đẩy lên trên cùng<span class="shortcut">⌘⇧↑</span></a></li>
+	<li><a href="#move_up">Đưa lên mặt trước<span class="shortcut">⌘↑</span></a></li>
+	<li><a href="#move_down">Đưa xuống mặt sau<span class="shortcut">⌘↓</span></a></li>
+  <li><a href="#move_back">Đưa xuống sau cùng<span class="shortcut">⌘⇧↓</span></a></li>
+</ul>
+<script type="text/javascript">
+	$(".done").click(function(){
+		var svg = svgCanvas.getSvgString();
+		top.cke_setSVG(svg);
+	});
+</script>
+</body>
+</html>

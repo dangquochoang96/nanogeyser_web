@@ -1,0 +1,16 @@
+.my-upload-image {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.my-upload-image ul {
+
+    padding: 10px;
+}
+
+.my-upload-image ul li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    list-style: none;
+    float: left;
+}

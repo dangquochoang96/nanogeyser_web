@@ -1,0 +1,100 @@
+.tit_comment{font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;}
+.form-group
+
+ {
+
+    padding-right: 0px !important;
+
+}
+
+.btn-comment {
+    display: inline-block;
+    float: right;
+    padding: 7px 35px;
+
+}
+#listcommrnts h5 i{color:green;font-size:14px;margin-left:10px;}
+#listcommrnts h5 span {
+
+    color: #ccc;
+
+    font-size: 12px; 
+
+    font-weight: normal;
+
+}
+
+#listcommrnts h5 {
+
+    font-size: 14px;
+overflow:hidden;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dadada;
+}
+.commentitem .commentitem{border:none;border-left:3px solid green;background:#F7F7F7;}
+#listcommrnts p {
+
+    background-color: #F7F7F7;
+
+    padding: 5px;
+
+
+}
+
+
+.info {
+
+    margin-left: 0px;
+
+}
+
+.mod_comment_reply{
+
+       color: #fff;
+    /* margin-left: 10px; */
+    cursor: pointer;
+    background: green;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.commentitem{
+    border: 1px solid #dadada;
+    position: relative;
+    padding: 10px; 
+	margin-bottom:10px;
+}
+
+#comment{
+
+    border: none;
+
+}
+
+.comment_top{
+
+    border: 1px solid;
+
+    display: inline-block;
+
+    width: 100%;
+
+}
+.img-uer span{    padding: 11px 15px;
+    border-radius: 50%;
+    background: #dadada;
+    /* line-height: 35px; */
+    display: inline-block;
+    text-align: center;}
+.img-uer span i{    font-size: 35px;
+    color: #fff;}
+.rating-comment{
+    width: 30%;
+    display: inline-block;
+    padding-left: 5px;
+}
