@@ -1,6 +1,6 @@
 .contact-social-list {
     bottom: 40px;
-    left: 20px;
+    right: 20px;
     position: fixed;
     z-index: 1;
 }
