@@ -1,6 +1,6 @@
 .contact-social-list {
     bottom: 40px;
-    left: 20px;
+    right: 20px;
     position: fixed;
     z-index: 1;
 }
@@ -44,9 +44,9 @@
     color: #fff;
     font-size: 16px;
     font-weight: 700;
-    left: 50%;
+    right: 50%;
     opacity: 0;
-    padding: 9px 12px 9px 40px;
+    padding: 9px 40px 12px 9px ;
     position: absolute;
     top: 50%;
     transform: translate(-20%, -50%);
