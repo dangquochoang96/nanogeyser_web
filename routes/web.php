@@ -52,6 +52,13 @@ Route::get('/gallery/{slug}', 'Front\GalleryController@detail')->name('gallery-d
 Route::get('/certification', 'Front\CertificationController@index')->name('certification');
 Route::get('/certification/{slug}', 'Front\CertificationController@detail')->name('certification-detail');
 
+Route::get('/giai-phap-tll', 'Front\SolutionController@index')->name('giai-phap-tll');
+Route::get('/giai-phap-combo', 'Front\SolutionController@index')->name('giai-phap-combo');
+Route::get('/giai-phap-cao-cap', 'Front\SolutionController@index')->name('giai-phap-cao-cap');
+Route::get('/giai-phap-phong-khach', 'Front\SolutionController@index')->name('giai-phap-phong-khach');
+Route::get('/giai-phap-phong-bep', 'Front\SolutionController@index')->name('giai-phap-phong-bep');
+Route::get('/giai-phap-nha-dan', 'Front\SolutionController@index')->name('giai-phap-nha-dan');
+
 Route::group(['prefix' => 'upload'], function () {
     Route::post('image', 'Admin\ImageUploadController@upload');
     Route::delete('image/{id}/delete', 'Admin\ImageUploadController@delete');
