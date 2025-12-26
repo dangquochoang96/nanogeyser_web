@@ -52,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link href="{{asset('front/stylesheet/stylesheetf9e3.css?v=6')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('front/stylesheet/jquery.numbox-1.2.0.css')}}" media="screen"/>
     {{-- <link rel="stylesheet" type="text/css"  href="js/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"> --}}
-    <link href="{{asset('front/stylesheet/main.css?v=16.1')}}" rel="stylesheet" media="screen"/>
+    <link href="{{asset('front/stylesheet/main.css?v=16.2')}}" rel="stylesheet" media="screen"/>
     <link rel="stylesheet" href="{{"/assets/scss/style.css?v=1"}}">
     <script type="text/javascript">
         $(document).ready(function(){
