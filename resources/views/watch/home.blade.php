@@ -23,7 +23,7 @@
         <div class="cate-h">
             <div class="container">
                 <div class="box-cate-h">
-                    <p class="tit-cate-h">NANO GEYSER</p>
+                    <p class="tit-cate-h"><a href="/ve-chung-toi" style="color:white">NANO GEYSER</a></p>
                     <p class="des-tit-h">Sau hơn 10 năm có mặt tại Việt Nam, Nano Geyser đã trở thành một trong những thương hiệu
                         hàng đầu tại Việt Nam về các dòng sản phẩm, dịch vụ máy lọc nước gia đình. Nguồn nước đầu ra máy
                         Nano Geyser hoàn toàn tinh khiết <b>ĐẠT CHUẨN QUỐC GIA NƯỚC UỐNG TRỰC TIẾP QCVN 6 - 1: 2010/BYT</b>
@@ -70,7 +70,87 @@
         </div>
     </div>
     <!--End Danh muc san pham-->
+    
+    <!--Giai phap may loc nuoc-->
     <div class="container">
+        <div class="sp-nb">
+            <div class="title-home">GIẢI PHÁP MÁY LỌC NƯỚC</div>
+            <div class="tab-content relative">
+                <div id="solutions-tab" class="tab-pane fade in active">
+                    <div id="owl-solutions" class="ul-spmoi owl-carousel">
+                        <div class="item">
+                            <div class="product-box solution-box">
+                                <a class="img-product-h" href="/giai-phap-nha-dan">
+                                    <img src="/front/image/solution6.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự">
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/giai-phap-nha-dan">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân</a>
+                                </h3>
+                                <p class="solution-des">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box solution-box">
+                                <a class="img-product-h" href="/giai-phap-phong-bep">
+                                    <img src="/front/image/solution5.jpg" class="img-responsive" alt="Giải pháp máy lọc nước công nghiệp">
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/giai-phap-phong-bep">GIẢI PHÁP Lọc Phòng Bếp</a>
+                                </h3>
+                                <p class="solution-des">GIẢI PHÁP Lọc Phòng Bếp</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box solution-box">
+                                <a class="img-product-h" href="/giai-phap-phong-khach">
+                                    <img src="/front/image/solution4.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Khách">
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/giai-phap-phong-khach">GIẢI PHÁP Lọc Phòng Khách</a>
+                                </h3>
+                                <p class="solution-des">GIẢI PHÁP Lọc Phòng Khách</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box solution-box">
+                                <a class="img-product-h" href="/giai-phap-cao-cap">
+                                    <img src="/front/image/solution3.jpg" class="img-responsive" alt="Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm">
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/giai-phap-cao-cap">GIẢI PHÁP lọc Cao Cấp</a>
+                                </h3>
+                                <p class="solution-des">Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box solution-box">
+                                <a class="img-product-h" href="/giai-phap-combo">
+                                    <img src="/front/image/solution2.jpg" class="img-responsive" alt="Giải pháp combo dành cho nhà mới">
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/giai-phap-combo">GIẢI PHÁP Combo Nhà Mới</a>
+                                </h3>
+                                <p class="solution-des">Giải pháp combo dành cho nhà mới</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box solution-box">
+                                <a class="img-product-h" href="/giai-phap-tll">
+                                    <img src="/front/image/solution1.jpg" class="img-responsive" alt="Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc">
+                                </a>
+                                <h3 class="product-name">
+                                    <a href="/giai-phap-tll">GIẢI PHÁP Thay Lõi Lọc</a>
+                                </h3>
+                                <p class="solution-des">Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
         <!--San pham noi bat-->
         <div class="sp-nb">
             <div class="title-home">SẢN PHẨM NỔI BẬT</div>
@@ -112,6 +192,21 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var owl = $("#owl-demo1");
+            owl.owlCarousel({
+                items: 3,
+                autoPlay: 10000,
+                pagination: true,
+                navigation: false,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3],
+                itemsTablet: [768, 1],
+                itemsMobile: [479, 1]
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var owl = $("#owl-solutions");
             owl.owlCarousel({
                 items: 3,
                 autoPlay: 10000,

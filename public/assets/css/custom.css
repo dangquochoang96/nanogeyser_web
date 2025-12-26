@@ -18,7 +18,7 @@ Author : themelooks.com
     transition: all 0.3s ease;
     position: absolute;
     background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1000;
     left: 0;
@@ -68,27 +68,71 @@ Author : themelooks.com
         width: 100%;
         box-sizing: border-box;
     }
-    
+
     .has-children.active > ul.ul-none {
         display: block;
     }
-    
+
     .has-children > ul.ul-none li {
         padding: 0;
     }
-    
+
     .has-children > ul.ul-none li a {
         color: #fff;
         padding: 10px 15px;
         border-bottom: 1px solid #fff;
     }
-    
+
     .has-children > ul.ul-none li a:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     /* Đảm bảo menu con hiển thị đúng trong container mobile */
     .menu-mb1 .has-children > ul.ul-none {
         padding-left: 20px;
     }
+}
+
+.solution-box {
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.solution-box:hover {
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+.solution-box .img-product-h {
+    display: block;
+    margin: 0 auto 15px;
+    width: 100%;
+    max-width: 200px;
+}
+.solution-box .img-product-h img {
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+.solution-box .product-name {
+    margin: 10px 0 8px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+.solution-box .product-name a {
+    color: #333;
+}
+.solution-box .solution-des {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+    padding: 0 10px;
+}
+.solution-box .icon-h {
+    top: 10px;
+    right: 10px;
 }

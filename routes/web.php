@@ -26,7 +26,7 @@ Route::get('/search', 'Front\IndexController@search');
 Route::get('/ve-chung-toi', 'Front\IndexController@aboutUs');
 Route::get('/lien-he', 'Front\ContactController@index');
 Route::post('/gui-lien-he', 'Front\ContactController@contactMe');
-Route::post('/subscribe', 'Front\ContactContro/ller@subscribe');
+Route::post('/subscribe', 'Front\ContactController@subscribe');
 Route::post('/add-bills', 'Admin\BillController@store');
 
 Route::get('/blog', 'Front\BlogController@index')->name('blog');

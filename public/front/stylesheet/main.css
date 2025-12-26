@@ -119,8 +119,7 @@ table {
 
 .menu-lv1 p a {
     font: 500 16px/50px sarabun-r;
-    /* color: #fff; */
-    color: #000;
+    color: #fff;
     text-transform: uppercase;
     display: block;
     padding: 0 20px;
@@ -4484,12 +4483,14 @@ label {
     }
 
     .menu-lv1 p a {
-        color: #fff;
+        /* color: #fff; */
         border-bottom: 1px solid #fff;
     }
 
     .menu-lv1 p a:hover {
         background: none;
+        background-color: #005405;
+        color: #000;
     }
 
     /* .menu-lv1 ul {
