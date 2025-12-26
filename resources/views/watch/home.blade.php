@@ -81,7 +81,7 @@
                         <div class="item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-nha-dan">
-                                    <img src="/front/image/solution6.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự">
+                                    <img src="/product_images/loc-tong-tu-truong-disruptor-nano-geyser-gn-lt03-2118.png" class="img-responsive" alt="GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự">
                                 </a>
                                 <h3 class="product-name">
                                     <a href="/giai-phap-nha-dan">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân</a>
@@ -92,7 +92,7 @@
                         <div class="item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-phong-bep">
-                                    <img src="/front/image/solution5.jpg" class="img-responsive" alt="Giải pháp máy lọc nước công nghiệp">
+                                    <img src="/product_images/may-loc-nuoc-nano-geyser-gn-b37-10-cap-loc-2092.png" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Bếp">
                                 </a>
                                 <h3 class="product-name">
                                     <a href="/giai-phap-phong-bep">GIẢI PHÁP Lọc Phòng Bếp</a>
@@ -103,7 +103,7 @@
                         <div class="item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-phong-khach">
-                                    <img src="/front/image/solution4.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Khách">
+                                    <img src="/product_images/may-loc-nuoc-nong-lanh-nguoi-nano-geyser-gn-k35t-2198.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Khách">
                                 </a>
                                 <h3 class="product-name">
                                     <a href="/giai-phap-phong-khach">GIẢI PHÁP Lọc Phòng Khách</a>
@@ -114,7 +114,7 @@
                         <div class="item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-cao-cap">
-                                    <img src="/front/image/solution3.jpg" class="img-responsive" alt="Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm">
+                                    <img src="/product_images/may-dien-giai-ion-kiem-geyser-ion-6s-gn-i6s-2097.png" class="img-responsive" alt="Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm">
                                 </a>
                                 <h3 class="product-name">
                                     <a href="/giai-phap-cao-cap">GIẢI PHÁP lọc Cao Cấp</a>
@@ -125,7 +125,7 @@
                         <div class="item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-combo">
-                                    <img src="/front/image/solution2.jpg" class="img-responsive" alt="Giải pháp combo dành cho nhà mới">
+                                    <img src="/product_images/may-loc-nuoc-nong-lanh-nguoi-nano-geyser-gn-k35d-2192.png" class="img-responsive" alt="Giải pháp combo dành cho nhà mới">
                                 </a>
                                 <h3 class="product-name">
                                     <a href="/giai-phap-combo">GIẢI PHÁP Combo Nhà Mới</a>
@@ -136,7 +136,7 @@
                         <div class="item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-tll">
-                                    <img src="/front/image/solution1.jpg" class="img-responsive" alt="Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc">
+                                    <img src="/product_images/loi-loc-nuoc-nano-geyser-pp2in1gac-2129.png" class="img-responsive" alt="Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc">
                                 </a>
                                 <h3 class="product-name">
                                     <a href="/giai-phap-tll">GIẢI PHÁP Thay Lõi Lọc</a>
