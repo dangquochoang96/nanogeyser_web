@@ -23,7 +23,52 @@
         <div class="cate-h">
             <div class="container">
                 <div class="box-cate-h">
-                    <p class="tit-cate-h"><a href="/ve-chung-toi" style="color:white">NANO GEYSER</a></p>
+                    <p class="tit-cate-h">
+                        <a href="/ve-chung-toi" class="btn-nano-geyser">NANO GEYSER</a>
+                    </p>
+                    <style>
+                    .btn-nano-geyser {
+                        display: inline-block;
+                        padding: 12px 30px;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white !important;
+                        text-decoration: none;
+                        border-radius: 30px;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        position: relative;
+                        overflow: hidden;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                    }
+                    
+                    .btn-nano-geyser:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                        transition: left 0.5s;
+                    }
+                    
+                    .btn-nano-geyser:hover {
+                        transform: translateY(-3px);
+                        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+                        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                    }
+                    
+                    .btn-nano-geyser:hover:before {
+                        left: 100%;
+                    }
+                    
+                    .btn-nano-geyser:active {
+                        transform: translateY(-1px);
+                        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                    }
+                    </style>
                     <p class="des-tit-h">Sau hơn 10 năm có mặt tại Việt Nam, Nano Geyser đã trở thành một trong những thương hiệu
                         hàng đầu tại Việt Nam về các dòng sản phẩm, dịch vụ máy lọc nước gia đình. Nguồn nước đầu ra máy
                         Nano Geyser hoàn toàn tinh khiết <b>ĐẠT CHUẨN QUỐC GIA NƯỚC UỐNG TRỰC TIẾP QCVN 6 - 1: 2010/BYT</b>
@@ -74,7 +119,7 @@
     <!--Giai phap may loc nuoc-->
     <div class="container">
         <div class="sp-nb">
-            <div class="title-home">GIẢI PHÁP MÁY LỌC NƯỚC</div>
+            <div class="title-home">GIẢI PHÁP LỌC NƯỚC</div>
             <div class="tab-content relative">
                 <div id="solutions-tab" class="tab-pane fade in active">
                     <div id="owl-solutions" class="ul-spmoi owl-carousel">
@@ -84,7 +129,7 @@
                                     <img src="/product_images/loc-tong-tu-truong-disruptor-nano-geyser-gn-lt03-2118.png" class="img-responsive" alt="GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-nha-dan">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân</a>
+                                    <a href="/giai-phap-nha-dan">GIẢI PHÁP LỌC TỔNG</a>
                                 </h3>
                                 <p class="solution-des">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
                             </div>
@@ -95,7 +140,7 @@
                                     <img src="/product_images/may-loc-nuoc-nano-geyser-gn-b37-10-cap-loc-2092.png" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Bếp">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-phong-bep">GIẢI PHÁP Lọc Phòng Bếp</a>
+                                    <a href="/giai-phap-phong-bep">GIẢI PHÁP PHÒNG BẾP</a>
                                 </h3>
                                 <p class="solution-des">GIẢI PHÁP Lọc Phòng Bếp</p>
                             </div>
@@ -106,7 +151,7 @@
                                     <img src="/product_images/may-loc-nuoc-nong-lanh-nguoi-nano-geyser-gn-k35t-2198.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Khách">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-phong-khach">GIẢI PHÁP Lọc Phòng Khách</a>
+                                    <a href="/giai-phap-phong-khach">GIẢI PHÁP PHÒNG KHÁCH</a>
                                 </h3>
                                 <p class="solution-des">GIẢI PHÁP Lọc Phòng Khách</p>
                             </div>
@@ -117,7 +162,7 @@
                                     <img src="/product_images/may-dien-giai-ion-kiem-geyser-ion-6s-gn-i6s-2097.png" class="img-responsive" alt="Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-cao-cap">GIẢI PHÁP lọc Cao Cấp</a>
+                                    <a href="/giai-phap-cao-cap">GIẢI PHÁP CAO CẤP</a>
                                 </h3>
                                 <p class="solution-des">Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm</p>
                             </div>
@@ -128,7 +173,7 @@
                                     <img src="/product_images/may-loc-nuoc-nong-lanh-nguoi-nano-geyser-gn-k35d-2192.png" class="img-responsive" alt="Giải pháp combo dành cho nhà mới">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-combo">GIẢI PHÁP Combo Nhà Mới</a>
+                                    <a href="/giai-phap-combo">GIẢI PHÁP COMBO NHÀ MỚI</a>
                                 </h3>
                                 <p class="solution-des">Giải pháp combo dành cho nhà mới</p>
                             </div>
@@ -139,7 +184,7 @@
                                     <img src="/product_images/loi-loc-nuoc-nano-geyser-pp2in1gac-2129.png" class="img-responsive" alt="Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-tll">GIẢI PHÁP Thay Lõi Lọc</a>
+                                    <a href="/giai-phap-tll">GIẢI PHÁP THAY LÕI LỌC</a>
                                 </h3>
                                 <p class="solution-des">Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc</p>
                             </div>
