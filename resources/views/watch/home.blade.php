@@ -30,7 +30,7 @@
                     .btn-nano-geyser {
                         display: inline-block;
                         padding: 12px 30px;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
                         color: white !important;
                         text-decoration: none;
                         border-radius: 30px;
@@ -57,7 +57,7 @@
                     .btn-nano-geyser:hover {
                         transform: translateY(-3px);
                         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-                        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                        background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
                     }
                     
                     .btn-nano-geyser:hover:before {
@@ -68,12 +68,19 @@
                         transform: translateY(-1px);
                         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
                     }
+                    @media screen and (max-width: 768px) {
+                        .btn-nano-geyser {
+                            padding: 10px 20px;
+                            font-size: 14px;
+                            border-radius: 25px;
+                        }
+                    }
                     </style>
                     <p class="des-tit-h">Sau hơn 10 năm có mặt tại Việt Nam, Nano Geyser đã trở thành một trong những thương hiệu
                         hàng đầu tại Việt Nam về các dòng sản phẩm, dịch vụ máy lọc nước gia đình. Nguồn nước đầu ra máy
                         Nano Geyser hoàn toàn tinh khiết <b>ĐẠT CHUẨN QUỐC GIA NƯỚC UỐNG TRỰC TIẾP QCVN 6 - 1: 2010/BYT</b>
                     </p>
-                    <ul class="list-cate-h ul-none  owl-carousel owl-theme">
+                    {{-- <ul class="list-cate-h ul-none  owl-carousel owl-theme">
                         <li>
                             <div class="mg-cate">
                                 <span class="img-cate-h"><a href="/may-loc-nuoc"><img src="/front/image/may.png"
@@ -96,7 +103,7 @@
                                 <p class="heading-h2-text"><a href="/ion-kiem">MÁY ION KIỀM</a></p>
                             </div>
                         </li>
-                    </ul>
+                    </ul> --}}
                     <script type="text/javascript">
                         $(document).ready(function() {
                             var owl = $(".list-cate-h");
