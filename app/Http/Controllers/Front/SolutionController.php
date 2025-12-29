@@ -41,16 +41,16 @@ class SolutionController extends Controller
                 'phongkhach4.jpg',
             ],
             'giai-phap-phong-bep' => [
-                'phongbep1.jpg',
-                'phongbep2.jpg',
-                'phongbep3.jpg',
-                'phongbep4.jpg',
+                'phongbep1.png',
+                'phongbep2.png',
+                'phongbep3.png',
+                'phongbep4.png',
             ],
             'giai-phap-nha-dan' => [
-                'nhadan1.jpg',
-                'nhadan2.jpg',
-                'nhadan3.jpg',
-                'nhadan4.jpg',
+                'nhadan1.png',
+                'nhadan2.png',
+                'nhadan3.png',
+                'nhadan4.png',
             ],
         ];
 
