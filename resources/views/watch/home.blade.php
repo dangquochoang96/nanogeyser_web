@@ -271,6 +271,93 @@
             });
         });
     </script>
+    
+    <style>
+    /* Style cho ảnh giải pháp lọc nước thành hình vuông */
+    .solution-box .img-product-h {
+        display: block;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 0px;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .solution-box .img-product-h:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .solution-box .img-product-h img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        transition: transform 0.3s ease;
+        background: #f8f9fa;
+    }
+    
+    .solution-box .img-product-h:hover img {
+        transform: scale(1.05);
+    }
+    
+    /* Style cho solution box */
+    .solution-box {
+        text-align: center;
+        padding: 15px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .solution-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+    
+    .solution-box .product-name {
+        margin: 15px 0 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.3;
+    }
+    
+    .solution-box .product-name a {
+        color: #2c3e50;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .solution-box .product-name a:hover {
+        color: #3498db;
+    }
+    
+    .solution-box .solution-des {
+        font-size: 14px;
+        color: #7f8c8d;
+        line-height: 1.4;
+        margin: 0;
+    }
+    
+    /* Responsive cho mobile */
+    @media (max-width: 768px) {
+        .solution-box .img-product-h {
+            height: 200px;
+        }
+        
+        .solution-box .product-name {
+            font-size: 14px;
+        }
+        
+        .solution-box .solution-des {
+            font-size: 13px;
+        }
+    }
+    </style>
     <script type="text/javascript">
         $(document).ready(function() {
             var owl = $("#owl-demo2");
