@@ -48,7 +48,7 @@ class SolutionController extends Controller
             ],
             'giai-phap-nha-dan' => [
                 'nhadan1.png',
-                'nhadan2.png',
+                'nhadan2.png',  
                 'nhadan3.png',
                 'nhadan4.png',
             ],
