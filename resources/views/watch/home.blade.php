@@ -138,7 +138,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-nha-dan">GIẢI PHÁP LỌC TỔNG</a>
                                 </h3>
-                                <p class="solution-des">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
+                                <p class="solution-des">Giải Pháp Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
                             </div>
                         </div>
                         <div class="item">
@@ -149,7 +149,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-phong-bep">GIẢI PHÁP PHÒNG BẾP</a>
                                 </h3>
-                                <p class="solution-des">GIẢI PHÁP Lọc Phòng Bếp</p>
+                                <p class="solution-des">Giải Pháp Lọc Phòng Bếp</p>
                             </div>
                         </div>
                         <div class="item">
@@ -160,7 +160,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-phong-khach">GIẢI PHÁP PHÒNG KHÁCH</a>
                                 </h3>
-                                <p class="solution-des">GIẢI PHÁP Lọc Phòng Khách</p>
+                                <p class="solution-des">Giải Pháp Lọc Phòng Khách</p>
                             </div>
                         </div>
                         <div class="item">
