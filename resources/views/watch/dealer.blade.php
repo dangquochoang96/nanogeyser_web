@@ -1,7 +1,70 @@
 @extends('watch.layout.master')
-
+@section('title', 'Hệ thống đại lý')
+@section('keywords', 'Hệ thống đại lý')
+@section('description', 'Hệ thống đại lý')
 @section('content')
+<!--Body-->
+<div class="bg-cate mg-0">   
+    <img src="/front/image/bg-dmsp.jpg">
+    <div class="tit-page">  
+        <div class="container">
+            <p class="heading-h1-text">Hệ thống đại lý</p>   
+        </div> 
+        <div class="breadcumb">
+            <div class="container"> 
+                <ul class="ul-bread ul-none">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="br-right"><img src="/front/image/right.png" alt=""></li>
+                    <li><a href="{{URL::current()}}">Hệ thống đại lý</a></li>
+                    <li><img src="/front/image/right.png" alt=""></li>
+                </ul>
+            </div>  
+        </div>  
+    </div>   
+</div>
+
 <div class="dealer-page">
+    <!-- Banner Section -->
+    <div class="dealer-banner">
+        <div class="banner-placeholder">
+            <!-- Để trống, thêm ảnh sau -->
+        </div>
+    </div>
+
+    <!-- Dealer Slider Section -->
+    <div class="dealer-slider-section">
+        <div class="container">
+            <h2 class="section-title">DANH SÁCH ĐẠI LÝ TRÊN TOÀN QUỐC</h2>
+            <div class="dealer-slider-wrapper">
+                <div class="dealer-slider" id="dealer-slider">
+                    @foreach($partners as $partner)
+                    <div class="dealer-slide-item">
+                        <div class="dealer-card">
+                            <div class="dealer-logo">
+                                @if($partner->image)
+                                <img src="{{ asset($partner->image) }}" alt="{{ $partner->name }}">
+                                @else
+                                <div class="logo-placeholder">
+                                    <i class="fa fa-building"></i>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="dealer-info">
+                                <h4 class="dealer-card-name">{{ $partner->name }}</h4>
+                                @if($partner->phone)
+                                <p class="dealer-card-phone"><i class="fa fa-phone"></i> {{ $partner->phone }}</p>
+                                @endif
+                                <p class="dealer-card-address">{{ $partner->address }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="slider-dots" id="slider-dots"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Search Section -->
         <div class="dealer-search-section">
@@ -9,13 +72,13 @@
                 <span class="search-label">Tìm kiếm cửa hàng</span>
                 <div class="search-filters">
                     <select id="province-select" class="filter-select">
-                        <option value="">Tất cả tỉnh/thành phố</option>
+                        <option value="">Chọn tỉnh, thành phố</option>
                         @foreach($provinces as $province)
                         <option value="{{ $province->province_code }}" {{ $selectedProvince == $province->province_code ? 'selected' : '' }}>{{ $province->province_name }}</option>
                         @endforeach
                     </select>
                     <select id="district-select" class="filter-select">
-                        <option value="">Tất cả quận/huyện</option>
+                        <option value="">Chọn quận, huyện</option>
                         @foreach($locations as $location)
                         <option value="{{ $location->district_code }}" data-province="{{ $location->province_code }}" {{ $selectedDistrict == $location->district_code ? 'selected' : '' }}>{{ $location->district_name }}</option>
                         @endforeach
@@ -80,19 +143,154 @@
     </div>
 </div>
 
+
 <style>
-.dealer-page {
-    padding: 30px 0;
+/* Banner Section */
+.dealer-banner {
+    width: 100%;
     background: #f5f5f5;
-    min-height: 600px;
+}
+
+.banner-placeholder {
+    width: 100%;
+    min-height: 400px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-placeholder img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Dealer Slider Section */
+.dealer-slider-section {
+    padding: 40px 0;
+    background: #fff;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.dealer-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.dealer-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.dealer-slide-item {
+    flex: 0 0 20%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.dealer-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    min-height: 280px;
+}
+
+.dealer-logo {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.dealer-logo img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.logo-placeholder {
+    width: 80px;
+    height: 80px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-placeholder i {
+    font-size: 32px;
+    color: #999;
+}
+
+.dealer-card-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    min-height: 40px;
+}
+
+.dealer-card-phone {
+    font-size: 14px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dealer-card-phone i {
+    margin-right: 5px;
+}
+
+.dealer-card-address {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.slider-dot.active {
+    background: #333;
+}
+
+/* Search Section */
+.dealer-page .container {
+    padding: 30px 15px;
 }
 
 .dealer-search-section {
     background: #fff;
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
 }
 
 .search-header {
@@ -137,22 +335,13 @@
 }
 
 .search-btn:hover {
-    background: #65A63A;
+    background: #5a9534;
 }
 
-.search-note {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-}
-
+/* Results Section */
 .dealer-results {
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
     overflow: hidden;
 }
 
@@ -230,7 +419,21 @@
     color: #666;
 }
 
+@media (max-width: 992px) {
+    .dealer-slide-item {
+        flex: 0 0 33.333%;
+    }
+}
+
 @media (max-width: 768px) {
+    .dealer-slide-item {
+        flex: 0 0 50%;
+    }
+    
+    .banner-placeholder {
+        min-height: 200px;
+    }
+    
     .search-header {
         flex-direction: column;
         align-items: flex-start;
@@ -258,10 +461,79 @@
         max-height: 300px;
     }
 }
+
+@media (max-width: 480px) {
+    .dealer-slide-item {
+        flex: 0 0 100%;
+    }
+}
 </style>
 
 <script>
 $(document).ready(function() {
+    // Dealer Slider
+    var slider = $('#dealer-slider');
+    var slideItems = slider.find('.dealer-slide-item');
+    var totalSlides = slideItems.length;
+    var slidesPerView = 5;
+    var currentSlide = 0;
+    
+    function updateSlidesPerView() {
+        if (window.innerWidth <= 480) {
+            slidesPerView = 1;
+        } else if (window.innerWidth <= 768) {
+            slidesPerView = 2;
+        } else if (window.innerWidth <= 992) {
+            slidesPerView = 3;
+        } else {
+            slidesPerView = 5;
+        }
+    }
+    
+    function createDots() {
+        var dotsContainer = $('#slider-dots');
+        dotsContainer.empty();
+        var totalPages = Math.ceil(totalSlides / slidesPerView);
+        
+        for (var i = 0; i < totalPages; i++) {
+            var dot = $('<span class="slider-dot"></span>');
+            if (i === 0) dot.addClass('active');
+            dot.data('index', i);
+            dotsContainer.append(dot);
+        }
+    }
+    
+    function goToSlide(index) {
+        var maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+        if (index < 0) index = maxIndex;
+        if (index > maxIndex) index = 0;
+        
+        currentSlide = index;
+        var translateX = -(index * slidesPerView * (100 / slidesPerView));
+        slider.css('transform', 'translateX(' + translateX + '%)');
+        
+        $('.slider-dot').removeClass('active');
+        $('.slider-dot').eq(index).addClass('active');
+    }
+    
+    updateSlidesPerView();
+    createDots();
+    
+    $(window).resize(function() {
+        updateSlidesPerView();
+        createDots();
+        goToSlide(0);
+    });
+    
+    $(document).on('click', '.slider-dot', function() {
+        goToSlide($(this).data('index'));
+    });
+    
+    // Auto slide
+    setInterval(function() {
+        goToSlide(currentSlide + 1);
+    }, 5000);
+    
     // Filter districts by province
     $('#province-select').change(function() {
         var provinceCode = $(this).val();

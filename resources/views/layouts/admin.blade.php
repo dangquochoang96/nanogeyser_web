@@ -257,7 +257,7 @@
                         <span class="title">Chứng Nhận</span>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('quan-tri/dai-ly*') || Request::is('quan-tri/quan-huyen*') ? 'active open' : '' }}">
+                <li class="nav-item {{ Request::is('quan-tri/dai-ly*') || Request::is('quan-tri/quan-huyen*') || Request::is('quan-tri/doi-tac*') ? 'active open' : '' }}">
                     <a href="javascript:;">
                         <i class="icon-location-pin"></i>
                         <span class="title">Đại lý</span>
@@ -266,8 +266,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
+                            <a href="{{ URL::action('Admin\PartnerController@list') }}">
+                                Đối tác phân phối</a>
+                        </li>
+                        <li>
                             <a href="{{ URL::action('Admin\AgentController@list') }}">
-                                Danh sách đại lý</a>
+                                Danh sách cửa hàng</a>
                         </li>
                         <li>
                             <a href="{{ URL::action('Admin\AgentController@listDistricts') }}">
