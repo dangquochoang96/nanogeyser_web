@@ -57,7 +57,7 @@
                             <select name="txt-province-code" id="province-select" class="form-control">
                                 <option value="">-- Chọn tỉnh/thành phố --</option>
                                 @foreach($provinces as $province)
-                                <option value="{{ $province->code }}">{{ $province->name }}</option>
+                                <option value="{{ $province->province_code }}">{{ $province->province_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -65,8 +65,8 @@
                             <label class="control-label">Quận/Huyện</label>
                             <select name="txt-district-code" id="district-select" class="form-control">
                                 <option value="">-- Chọn quận/huyện --</option>
-                                @foreach($districts as $district)
-                                <option value="{{ $district->code }}" data-province="{{ $district->province_code }}">{{ $district->name }}</option>
+                                @foreach($locations as $location)
+                                <option value="{{ $location->district_code }}" data-province="{{ $location->province_code }}" style="display:none">{{ $location->district_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -101,16 +101,24 @@
 <script src="{{ asset('quantri/theme/assets/global/plugins/icheck/icheck.min.js') }}" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
-    $('#province-select').change(function() {
-        var provinceCode = $(this).val();
+    function filterDistricts(provinceCode) {
         $('#district-select option').each(function() {
-            var districtProvince = $(this).data('province');
-            if (provinceCode === '' || districtProvince == provinceCode || $(this).val() === '') {
-                $(this).show();
+            var $opt = $(this);
+            var districtProvince = $opt.data('province');
+            
+            if ($opt.val() === '') {
+                $opt.show();
+            } else if (provinceCode !== '' && String(districtProvince) === String(provinceCode)) {
+                $opt.show();
             } else {
-                $(this).hide();
+                $opt.hide();
             }
         });
+    }
+    
+    $('#province-select').change(function() {
+        var provinceCode = $(this).val();
+        filterDistricts(provinceCode);
         $('#district-select').val('');
     });
 });

@@ -57,7 +57,7 @@
                             <select name="txt-province-code" id="province-select" class="form-control">
                                 <option value="">-- Chọn tỉnh/thành phố --</option>
                                 @foreach($provinces as $province)
-                                <option value="{{ $province->code }}" {{ $dealer->province_code == $province->code ? 'selected' : '' }}>{{ $province->name }}</option>
+                                <option value="{{ $province->province_code }}" {{ $dealer->province_code == $province->province_code ? 'selected' : '' }}>{{ $province->province_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -65,8 +65,8 @@
                             <label class="control-label">Quận/Huyện</label>
                             <select name="txt-district-code" id="district-select" class="form-control">
                                 <option value="">-- Chọn quận/huyện --</option>
-                                @foreach($districts as $district)
-                                <option value="{{ $district->code }}" data-province="{{ $district->province_code }}" {{ $dealer->district_code == $district->code ? 'selected' : '' }}>{{ $district->name }}</option>
+                                @foreach($locations as $location)
+                                <option value="{{ $location->district_code }}" data-province="{{ $location->province_code }}" {{ $dealer->district_code == $location->district_code ? 'selected' : '' }} style="{{ $dealer->province_code != $location->province_code ? 'display:none' : '' }}">{{ $location->district_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -101,26 +101,24 @@
 <script src="{{ asset('quantri/theme/assets/global/plugins/icheck/icheck.min.js') }}" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
-    var currentProvince = $('#province-select').val();
-    if (currentProvince) {
+    function filterDistricts(provinceCode) {
         $('#district-select option').each(function() {
-            var districtProvince = $(this).data('province');
-            if (districtProvince != currentProvince && $(this).val() !== '') {
-                $(this).hide();
+            var $opt = $(this);
+            var districtProvince = $opt.data('province');
+            
+            if ($opt.val() === '') {
+                $opt.show();
+            } else if (provinceCode === '' || String(districtProvince) === String(provinceCode)) {
+                $opt.show();
+            } else {
+                $opt.hide();
             }
         });
     }
     
     $('#province-select').change(function() {
         var provinceCode = $(this).val();
-        $('#district-select option').each(function() {
-            var districtProvince = $(this).data('province');
-            if (provinceCode === '' || districtProvince == provinceCode || $(this).val() === '') {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
+        filterDistricts(provinceCode);
         $('#district-select').val('');
     });
 });

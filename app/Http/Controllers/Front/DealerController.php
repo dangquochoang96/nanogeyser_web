@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Dealer;
-use App\Models\Province;
-use App\Models\District;
+use App\Models\Location;
 
 class DealerController extends Controller
 {
@@ -23,13 +22,18 @@ class DealerController extends Controller
         }
         
         $dealers = $query->get();
-        $provinces = Province::orderBy('name', 'ASC')->get();
-        $districts = District::orderBy('name', 'ASC')->get();
+        
+        // Lấy danh sách tỉnh từ bảng locations (unique)
+        $provinces = Location::select('province_code', 'province_name')
+            ->distinct()
+            ->orderBy('province_name', 'ASC')
+            ->get();
+        $locations = Location::orderBy('district_name', 'ASC')->get();
         
         return view('watch.dealer', [
             'dealers' => $dealers,
             'provinces' => $provinces,
-            'districts' => $districts,
+            'locations' => $locations,
             'selectedProvince' => $request->input('province'),
             'selectedDistrict' => $request->input('district')
         ]);
@@ -38,10 +42,10 @@ class DealerController extends Controller
     public function getDistricts(Request $request)
     {
         $provinceCode = $request->input('province_code');
-        $districts = District::where('province_code', $provinceCode)
-            ->orderBy('name', 'ASC')
+        $locations = Location::where('province_code', $provinceCode)
+            ->orderBy('district_name', 'ASC')
             ->get();
         
-        return response()->json($districts);
+        return response()->json($locations);
     }
 }

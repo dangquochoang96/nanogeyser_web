@@ -29,22 +29,26 @@
      </div>
   </div>
   <div class="portlet-body">
-      <form method="POST" action="{{ URL::action('Admin\AgentController@editDistrict', ['id' => $district->id]) }}" accept-charset="UTF-8" id="edit-form">
+      <form method="POST" action="{{ URL::action('Admin\AgentController@editDistrict', ['id' => $location->id]) }}" accept-charset="UTF-8" id="edit-form">
         @csrf
             <div class="form-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">Mã quận/huyện <span class="required"> * </span></label>
-                            <input type="text" name="txt-code" class="form-control" value="{{ old('txt-code', $district->code) }}"/>
+                            <input type="text" name="txt-district-code" class="form-control" value="{{ old('txt-district-code', $location->district_code) }}"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Tên quận/huyện <span class="required"> * </span></label>
-                            <input type="text" name="txt-name" class="form-control" value="{{ old('txt-name', $district->name) }}"/>
+                            <input type="text" name="txt-district-name" class="form-control" value="{{ old('txt-district-name', $location->district_name) }}"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Mã tỉnh/thành</label>
-                            <input type="text" name="txt-province-code" class="form-control" value="{{ old('txt-province-code', $district->province_code) }}"/>
+                            <input type="text" name="txt-province-code" class="form-control" value="{{ old('txt-province-code', $location->province_code) }}"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tên tỉnh/thành</label>
+                            <input type="text" name="txt-province-name" class="form-control" value="{{ old('txt-province-name', $location->province_name) }}"/>
                         </div>
                     </div>
                 </div>

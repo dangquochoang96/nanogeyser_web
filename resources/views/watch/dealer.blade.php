@@ -11,13 +11,13 @@
                     <select id="province-select" class="filter-select">
                         <option value="">Tất cả tỉnh/thành phố</option>
                         @foreach($provinces as $province)
-                        <option value="{{ $province->code }}" {{ $selectedProvince == $province->code ? 'selected' : '' }}>{{ $province->name }}</option>
+                        <option value="{{ $province->province_code }}" {{ $selectedProvince == $province->province_code ? 'selected' : '' }}>{{ $province->province_name }}</option>
                         @endforeach
                     </select>
                     <select id="district-select" class="filter-select">
                         <option value="">Tất cả quận/huyện</option>
-                        @foreach($districts as $district)
-                        <option value="{{ $district->code }}" data-province="{{ $district->province_code }}" {{ $selectedDistrict == $district->code ? 'selected' : '' }}>{{ $district->name }}</option>
+                        @foreach($locations as $location)
+                        <option value="{{ $location->district_code }}" data-province="{{ $location->province_code }}" {{ $selectedDistrict == $location->district_code ? 'selected' : '' }}>{{ $location->district_name }}</option>
                         @endforeach
                     </select>
                     <button id="search-btn" class="search-btn">TÌM KIẾM</button>
