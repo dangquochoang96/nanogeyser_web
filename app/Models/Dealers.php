@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+class Dealers extends Model
 {
-    protected $table = 'districts';
+    protected $table = 'dealers';
     protected $fillable
         = [
             'id',
-            'province_code',
             'name',
-            'code',
-            'isInner',
-            'status',
-            'order',
+            'address',
+            'district_id',
+            'province_id',
+            'phone',
+            'is_active',
             'created_at',
             'updated_at'
         ];
@@ -23,5 +23,4 @@ class District extends Model
     protected $hidden = [
         'pivot'
     ];
-
 }

@@ -171,7 +171,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-cao-cap">GIẢI PHÁP CAO CẤP</a>
                                 </h3>
-                                <p class="solution-des">Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm</p>
+                                <p class="solution-des">Giải Pháp Lọc Dành Cho Khách Hàng Cao Cấp - Máy Điện Phân Ion Kiềm</p>
                             </div>
                         </div>
                         <div class="item">
@@ -182,7 +182,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-combo">GIẢI PHÁP COMBO NHÀ MỚI</a>
                                 </h3>
-                                <p class="solution-des">Giải pháp combo dành cho nhà mới</p>
+                                <p class="solution-des">Giải Pháp Combo Dành Cho Nhà Mới</p>
                             </div>
                         </div>
                         <div class="item">
@@ -193,7 +193,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-tll">GIẢI PHÁP THAY LÕI LỌC</a>
                                 </h3>
-                                <p class="solution-des">Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc</p>
+                                <p class="solution-des">Giải Pháp Thay Lõi Lọc Dành Cho Nhà Đã Có Hệ Thống Lọc</p>
                             </div>
                         </div>
                     </div>
