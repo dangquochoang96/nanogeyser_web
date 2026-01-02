@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Dealer;
+use App\Models\Partner;
 use App\Models\Location;
 
 class DealerController extends Controller
@@ -23,6 +24,9 @@ class DealerController extends Controller
         
         $dealers = $query->get();
         
+        // Lấy đối tác phân phối cho slider
+        $partners = Partner::where('is_active', 1)->orderBy('order', 'ASC')->get();
+        
         // Lấy danh sách tỉnh từ bảng locations (unique)
         $provinces = Location::select('province_code', 'province_name')
             ->distinct()
@@ -32,6 +36,7 @@ class DealerController extends Controller
         
         return view('watch.dealer', [
             'dealers' => $dealers,
+            'partners' => $partners,
             'provinces' => $provinces,
             'locations' => $locations,
             'selectedProvince' => $request->input('province'),

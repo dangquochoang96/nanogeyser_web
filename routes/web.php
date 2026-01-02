@@ -151,6 +151,14 @@ Route::group(['prefix' => '/quan-tri', 'middleware' => ['auth','action']], funct
         Route::post('/sua/{id}', 'Admin\AgentController@edit');
         Route::post('/xoa', 'Admin\AgentController@del');
     });
+    Route::group(['prefix' => '/doi-tac'], function () {
+        Route::get('/', 'Admin\PartnerController@list');
+        Route::get('/them', 'Admin\PartnerController@add');
+        Route::post('/them', 'Admin\PartnerController@add');
+        Route::get('/sua/{id}', 'Admin\PartnerController@edit');
+        Route::post('/sua/{id}', 'Admin\PartnerController@edit');
+        Route::post('/xoa', 'Admin\PartnerController@del');
+    });
     Route::group(['prefix' => '/quan-huyen'], function () {
         Route::get('/', 'Admin\AgentController@listDistricts');
         Route::get('/them', 'Admin\AgentController@addDistrict');
