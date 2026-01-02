@@ -257,6 +257,24 @@
                         <span class="title">Chứng Nhận</span>
                     </a>
                 </li>
+                <li class="nav-item {{ Request::is('quan-tri/dai-ly*') || Request::is('quan-tri/quan-huyen*') ? 'active open' : '' }}">
+                    <a href="javascript:;">
+                        <i class="icon-location-pin"></i>
+                        <span class="title">Đại lý</span>
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{ URL::action('Admin\AgentController@list') }}">
+                                Danh sách đại lý</a>
+                        </li>
+                        <li>
+                            <a href="{{ URL::action('Admin\AgentController@listDistricts') }}">
+                                Quận/Huyện</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item {{ Request::is('quan-tri/cai-dat*') ? 'active open' : '' }}">
                     <a href="javascript:;">
                         <i class="icon-wrench"></i>

@@ -59,6 +59,9 @@ Route::get('/giai-phap-phong-khach', 'Front\SolutionController@index')->name('gi
 Route::get('/giai-phap-phong-bep', 'Front\SolutionController@index')->name('giai-phap-phong-bep');
 Route::get('/giai-phap-nha-dan', 'Front\SolutionController@index')->name('giai-phap-nha-dan');
 
+Route::get('/he-thong-dai-ly', 'Front\DealerController@index')->name('he-thong-dai-ly');
+Route::get('/api/districts', 'Front\DealerController@getDistricts');
+
 Route::group(['prefix' => 'upload'], function () {
     Route::post('image', 'Admin\ImageUploadController@upload');
     Route::delete('image/{id}/delete', 'Admin\ImageUploadController@delete');
@@ -139,6 +142,22 @@ Route::group(['prefix' => '/quan-tri', 'middleware' => ['auth','action']], funct
         Route::get('/them', 'Admin\ReviewController@add');
         Route::post('/them', 'Admin\ReviewController@add');
         Route::post('/xoa', 'Admin\ReviewController@del');
+    });
+    Route::group(['prefix' => '/dai-ly'], function () {
+        Route::get('/', 'Admin\AgentController@list');
+        Route::get('/them', 'Admin\AgentController@add');
+        Route::post('/them', 'Admin\AgentController@add');
+        Route::get('/sua/{id}', 'Admin\AgentController@edit');
+        Route::post('/sua/{id}', 'Admin\AgentController@edit');
+        Route::post('/xoa', 'Admin\AgentController@del');
+    });
+    Route::group(['prefix' => '/quan-huyen'], function () {
+        Route::get('/', 'Admin\AgentController@listDistricts');
+        Route::get('/them', 'Admin\AgentController@addDistrict');
+        Route::post('/them', 'Admin\AgentController@addDistrict');
+        Route::get('/sua/{id}', 'Admin\AgentController@editDistrict');
+        Route::post('/sua/{id}', 'Admin\AgentController@editDistrict');
+        Route::post('/xoa', 'Admin\AgentController@delDistrict');
     });
     Route::group(['prefix' => '/cai-dat'], function () {
         Route::get('/sua', 'Admin\SettingController@index');
