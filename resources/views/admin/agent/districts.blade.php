@@ -38,29 +38,31 @@
         </div>
         <button type="submit" class="btn blue"><i class="fa fa-search"></i> Tìm kiếm</button>
     </form>
-    @if(count($districts) > 0)
+    @if(count($locations) > 0)
      <div class="table-responsive">
         <table class="table table-bordered table-hover td-middle">
            <thead>
               <tr>
                  <th style="width:52px;" class="text-center">STT</th>
-                 <th class="text-center">Mã</th>
-                 <th class="text-center">Tên</th>
+                 <th class="text-center">Mã quận/huyện</th>
+                 <th class="text-center">Tên quận/huyện</th>
                  <th class="text-center">Mã tỉnh</th>
+                 <th class="text-center">Tên tỉnh</th>
                  <th style="width: 100px;" class="text-center"></th>
               </tr>
            </thead>
            <tbody>
-            <?php $count = ($districts->currentpage() - 1) * $districts->perpage() + 1; ?>
-              @foreach ($districts as $district)
+            <?php $count = ($locations->currentpage() - 1) * $locations->perpage() + 1; ?>
+              @foreach ($locations as $location)
               <tr>
                  <td class="text-center"><?php echo $count++; ?></td>
-                 <td class="text-center">{{ $district->code }}</td>
-                 <td class="text-center">{{ $district->name }}</td>
-                 <td class="text-center">{{ $district->province_code }}</td>
+                 <td class="text-center">{{ $location->district_code }}</td>
+                 <td class="text-center">{{ $location->district_name }}</td>
+                 <td class="text-center">{{ $location->province_code }}</td>
+                 <td class="text-center">{{ $location->province_name }}</td>
                  <td>
-                    <a href="{{ URL::action('Admin\AgentController@editDistrict', ['id' => $district->id]) }}" class="btn btn-xs green-jungle"><i class="fa fa-pencil"></i></a>
-                    <button type="button" data-id="{{ $district->id }}" class="btn-del btn btn-xs red-soft m-0"><i class="fa fa-trash"></i></button>
+                    <a href="{{ URL::action('Admin\AgentController@editDistrict', ['id' => $location->id]) }}" class="btn btn-xs green-jungle"><i class="fa fa-pencil"></i></a>
+                    <button type="button" data-id="{{ $location->id }}" class="btn-del btn btn-xs red-soft m-0"><i class="fa fa-trash"></i></button>
                  </td>
               </tr>
               @endforeach
@@ -68,7 +70,7 @@
         </table>
      </div> 
      <div class="text-right">
-      {!! $districts->appends(Request::all())->links() !!}
+      {!! $locations->appends(Request::all())->links() !!}
     </div>
     @else
     <h3 class="text-center">Không có dữ liệu</h3>

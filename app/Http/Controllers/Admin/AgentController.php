@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\District;
+use App\Models\Location;
 use App\Models\Dealer;
 use App\Models\Province;
 use Validator;
@@ -34,8 +34,12 @@ class AgentController extends Controller
     public function add(Request $request)
     {
         $response = [];
-        $response['provinces'] = Province::orderBy('name', 'ASC')->get();
-        $response['districts'] = District::orderBy('name', 'ASC')->get();
+        // Lấy danh sách tỉnh từ bảng locations (unique)
+        $response['provinces'] = Location::select('province_code', 'province_name')
+            ->distinct()
+            ->orderBy('province_name', 'ASC')
+            ->get();
+        $response['locations'] = Location::orderBy('district_name', 'ASC')->get();
         
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
@@ -77,11 +81,17 @@ class AgentController extends Controller
             $dealer = Dealer::find($id);
             
             if (!empty($dealer)) {
+                // Lấy danh sách tỉnh từ bảng locations (unique)
+                $provinces = Location::select('province_code', 'province_name')
+                    ->distinct()
+                    ->orderBy('province_name', 'ASC')
+                    ->get();
+                
                 $response = [
                     'title' => "Sửa đại lý " . $dealer->name,
                     'dealer' => $dealer,
-                    'provinces' => Province::orderBy('name', 'ASC')->get(),
-                    'districts' => District::orderBy('name', 'ASC')->get()
+                    'provinces' => $provinces,
+                    'locations' => Location::orderBy('district_name', 'ASC')->get()
                 ];
                 
                 if ($request->isMethod('post')) {
@@ -147,16 +157,16 @@ class AgentController extends Controller
         }
     }
 
-    // Danh sách quận/huyện (districts)
+    // Danh sách quận/huyện (locations)
     public function listDistricts(Request $request)
     {
-        $query = District::query();
+        $query = Location::query();
         
         if ($request->has('name') && $request->input('name') != "") {
-            $query->where('name', 'LIKE', '%' . $request->input('name') . '%');
+            $query->where('district_name', 'LIKE', '%' . $request->input('name') . '%');
         }
         
-        $data['districts'] = $query->paginate(30);
+        $data['locations'] = $query->paginate(30);
         
         return view('admin.agent.districts', $data);
     }
@@ -165,26 +175,28 @@ class AgentController extends Controller
     public function addDistrict(Request $request)
     {
         $response = [];
+        $response['provinces'] = Province::orderBy('name', 'ASC')->get();
         
         if ($request->isMethod('post')) {
             $validator = Validator::make($request->all(), [
-                'txt-name' => 'required|min:3',
-                'txt-code' => 'required',
+                'txt-district-name' => 'required|min:2',
+                'txt-district-code' => 'required',
             ], [
-                'txt-name.required' => 'Tên quận/huyện không được để trống',
-                'txt-name.min' => 'Tên quận/huyện quá ngắn',
-                'txt-code.required' => 'Mã quận/huyện không được để trống',
+                'txt-district-name.required' => 'Tên quận/huyện không được để trống',
+                'txt-district-name.min' => 'Tên quận/huyện quá ngắn',
+                'txt-district-code.required' => 'Mã quận/huyện không được để trống',
             ]);
             
             if (!$validator->fails()) {
                 try {
-                    $district = new District();
-                    $district->name = trim($request->input('txt-name'));
-                    $district->code = trim($request->input('txt-code'));
-                    $district->province_code = trim($request->input('txt-province-code'));
-                    $district->save();
+                    $location = new Location();
+                    $location->district_name = trim($request->input('txt-district-name'));
+                    $location->district_code = trim($request->input('txt-district-code'));
+                    $location->province_code = trim($request->input('txt-province-code'));
+                    $location->province_name = trim($request->input('txt-province-name'));
+                    $location->save();
                     
-                    return redirect()->action('Admin\AgentController@listDistricts')->with('success', 'Thêm quận/huyện "' . $district->name . '" thành công');
+                    return redirect()->action('Admin\AgentController@listDistricts')->with('success', 'Thêm quận/huyện "' . $location->district_name . '" thành công');
                 } catch (\Exception $ex) {
                     return redirect()->action('Admin\AgentController@addDistrict')->with('error', 'Lỗi trong quá trình xử lý dữ liệu: ' . $ex->getMessage());
                 }
@@ -200,31 +212,33 @@ class AgentController extends Controller
     public function editDistrict($id, Request $request)
     {
         try {
-            $district = District::find($id);
+            $location = Location::find($id);
             
-            if (!empty($district)) {
+            if (!empty($location)) {
                 $response = [
-                    'title' => "Sửa quận/huyện " . $district->name,
-                    'district' => $district
+                    'title' => "Sửa quận/huyện " . $location->district_name,
+                    'location' => $location,
+                    'provinces' => Province::orderBy('name', 'ASC')->get()
                 ];
                 
                 if ($request->isMethod('post')) {
                     $validator = Validator::make($request->all(), [
-                        'txt-name' => 'required|min:3',
-                        'txt-code' => 'required',
+                        'txt-district-name' => 'required|min:2',
+                        'txt-district-code' => 'required',
                     ], [
-                        'txt-name.required' => 'Tên quận/huyện không được để trống',
-                        'txt-name.min' => 'Tên quận/huyện quá ngắn',
-                        'txt-code.required' => 'Mã quận/huyện không được để trống',
+                        'txt-district-name.required' => 'Tên quận/huyện không được để trống',
+                        'txt-district-name.min' => 'Tên quận/huyện quá ngắn',
+                        'txt-district-code.required' => 'Mã quận/huyện không được để trống',
                     ]);
                     
                     if (!$validator->fails()) {
-                        $district->name = trim($request->input('txt-name'));
-                        $district->code = trim($request->input('txt-code'));
-                        $district->province_code = trim($request->input('txt-province-code'));
-                        $district->save();
+                        $location->district_name = trim($request->input('txt-district-name'));
+                        $location->district_code = trim($request->input('txt-district-code'));
+                        $location->province_code = trim($request->input('txt-province-code'));
+                        $location->province_name = trim($request->input('txt-province-name'));
+                        $location->save();
                         
-                        return redirect()->action('Admin\AgentController@listDistricts')->with('success', 'Sửa quận/huyện "' . $district->name . '" thành công');
+                        return redirect()->action('Admin\AgentController@listDistricts')->with('success', 'Sửa quận/huyện "' . $location->district_name . '" thành công');
                     } else {
                         return redirect()->action('Admin\AgentController@editDistrict', ['id' => $id])->withInput()->with('error', $validator->errors()->first());
                     }
@@ -251,10 +265,10 @@ class AgentController extends Controller
         
         if (!$validator->fails()) {
             try {
-                $data = District::find($request->input('txt-uid'));
+                $data = Location::find($request->input('txt-uid'));
                 
                 if (!empty($data)) {
-                    $name = $data->name;
+                    $name = $data->district_name;
                     $data->delete();
                     return redirect()->back()->with('success', 'Xóa quận/huyện "' . $name . '" thành công');
                 } else {

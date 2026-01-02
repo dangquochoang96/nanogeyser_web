@@ -36,15 +36,19 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">Mã quận/huyện <span class="required"> * </span></label>
-                            <input type="text" name="txt-code" class="form-control" value="{{ old('txt-code') }}"/>
+                            <input type="text" name="txt-district-code" class="form-control" value="{{ old('txt-district-code') }}"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Tên quận/huyện <span class="required"> * </span></label>
-                            <input type="text" name="txt-name" class="form-control" value="{{ old('txt-name') }}"/>
+                            <input type="text" name="txt-district-name" class="form-control" value="{{ old('txt-district-name') }}"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Mã tỉnh/thành</label>
                             <input type="text" name="txt-province-code" class="form-control" value="{{ old('txt-province-code') }}"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tên tỉnh/thành</label>
+                            <input type="text" name="txt-province-name" class="form-control" value="{{ old('txt-province-name') }}"/>
                         </div>
                     </div>
                 </div>
