@@ -379,7 +379,7 @@
         <div class="container">
             <div class="title-home">VÌ SAO NÊN CHỌN NANO GEYSER</div>
             <p class="des-tit">Tự hào là một trong những đơn vị nhập khẩu, lắp ráp và phân phối máy lọc nước Nano Geyser. Với hơn
-                5 năm kinh nghiệm tư vấn, lắp đặt máy lọc nước Nano Geyser cho hàng triswwwwwwwwệu gia đình Việt. Với những giá trị cốt
+                5 năm kinh nghiệm tư vấn, lắp đặt máy lọc nước Nano Geyser cho hàng triệu gia đình Việt. Với những giá trị cốt
                 lõi <b> Đổi mới mỗi ngày - Lấy khách hàng làm trung tâm & luôn luôn tận tâm - Cam kết vượt trội</b>
             </p>
             <div class="box-gt">
