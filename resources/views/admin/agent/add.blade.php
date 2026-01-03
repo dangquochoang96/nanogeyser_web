@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 @section('head')
 <link href="{{ asset('quantri/theme/assets/global/plugins/icheck/skins/all.css') }}" rel="stylesheet" type="text/css"/>
+<style>
+.select2-container { width: 100% !important; }
+.select2-container .select2-selection--single { height: 34px; border: 1px solid #c2cad8; border-radius: 4px; }
+.select2-container--default .select2-selection--single .select2-selection__rendered { line-height: 34px; }
+.select2-container--default .select2-selection--single .select2-selection__arrow { height: 32px; }
+</style>
 @endsection
 @section('content')
     <h3 class="page-title">
@@ -101,26 +107,42 @@
 <script src="{{ asset('quantri/theme/assets/global/plugins/icheck/icheck.min.js') }}" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
+    // Initialize Select2 for province
+    $('#province-select').select2({
+        placeholder: '-- Chọn tỉnh/thành phố --',
+        allowClear: true
+    });
+    
+    // Initialize Select2 for district
+    $('#district-select').select2({
+        placeholder: '-- Chọn quận/huyện --',
+        allowClear: true
+    });
+    
     function filterDistricts(provinceCode) {
         $('#district-select option').each(function() {
             var $opt = $(this);
             var districtProvince = $opt.data('province');
             
             if ($opt.val() === '') {
-                $opt.show();
+                $opt.prop('disabled', false);
             } else if (provinceCode !== '' && String(districtProvince) === String(provinceCode)) {
-                $opt.show();
+                $opt.prop('disabled', false).show();
             } else {
-                $opt.hide();
+                $opt.prop('disabled', true).hide();
             }
         });
+        // Refresh Select2 to apply changes
+        $('#district-select').val('').trigger('change');
     }
     
-    $('#province-select').change(function() {
+    $('#province-select').on('change', function() {
         var provinceCode = $(this).val();
         filterDistricts(provinceCode);
-        $('#district-select').val('');
     });
+    
+    // Initial filter
+    filterDistricts($('#province-select').val() || '');
 });
 </script>
 @endsection
