@@ -1,12 +1,15 @@
 @extends('watch.layout.master')
 
+@php
+    $title = isset($pageTitle) ? $pageTitle : 'Chứng Nhận';
+@endphp
 
 @section('content')
 <div class="bg-cate">
     <img src="/front/image/bg-dmsp.jpg">
     <div class="tit-page">
         <div class="container">
-            <h2>Chứng nhận</h2>
+            <h2>{{ $title }}</h2>
         </div>
         <div class="breadcumb">
             <div class="container">
@@ -23,7 +26,7 @@
 <div class="container">
     <div class="dm-child dm-news">
         <div class="tit-child">
-            <h1>Hình ảnh chứng nhận</h1>
+            <h1>Hình ảnh {{ strtolower($title) }}</h1>
         </div>
         @if(count($certification)>0)
         <div class="row">

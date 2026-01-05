@@ -79,6 +79,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="control-label">Loại chứng chỉ<span class="required"> * </span></label>
+                                            <select name="type" class="form-control">
+                                                @foreach($typeLabels as $value => $label)
+                                                    <option value="{{ $value }}" {{ old('type') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="control-label">Seo URL</label>
                                             <input type="text" name="slug" class="form-control"
                                                    value="{{ old('slug') }}"/>
