@@ -8,10 +8,10 @@
                             <ul class="ul-none menuf2">
                                 <li><a href="/blog/nano-geyser-thuong-hieu-duy-nhat-duoc-bao-ho-tai-viet-nam-39">Bảo hộ thương hiệu</a></li>
                                 <li><a href="/certification">Chứng chỉ</a></li>
-                                <li><a href="/certification/ket-qua-thu-nghiem-may-loc-nuoc-nano-geyser-50">Xét nghiệm</a></li>
+                                <li><a href="/certification">Xét nghiệm</a></li>
                                 <li><a href="/blog">Tin tức</a></li>
                                 <li><a href="/blog/cate/hanh-trinh-thien-nguyen-1">Thiện nguyện</a></li>
-                                <li><a href="/certification/chung-nhan-chat-luong-tcvn-119782017-46">Giấy chứng nhận phù hợp tiêu chuẩn</a></li>
+                                <li><a href="/certification/chung-nhan-tcvn-119782017-may-loc-nuoc-ro-nano-ion-kiem-59">Giấy chứng nhận phù hợp tiêu chuẩn</a></li>
                                 <li><a href='http://online.gov.vn/Home/WebDetails/136086'><img alt='' title='' width="200px" src='/front/image/logoSaleNoti.png'/></a></li>
                             </ul>
                         </li>
