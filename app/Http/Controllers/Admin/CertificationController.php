@@ -25,12 +25,17 @@ class CertificationController extends Controller
             $c = $request->get('name');
             $certificationsQ = $certificationsQ->where('name', 'like', "%$c%");
         }
+        if ($request->get('type')) {
+            $certificationsQ = $certificationsQ->where('type', $request->get('type'));
+        }
         $certifications = $certificationsQ->orderBy('id', 'desc')->paginate(50);
 
         return view('admin.certification.list', [
             'certifications'      => $certifications,
+            'typeLabels'          => Certification::$typeLabels,
             'filter' => [
                 'name'          => $request->get('name', ''),
+                'type'          => $request->get('type', ''),
             ]
         ]);
     }
@@ -42,7 +47,9 @@ class CertificationController extends Controller
      */
     public function create()
     {
-        return view('admin.certification.add', []);
+        return view('admin.certification.add', [
+            'typeLabels' => Certification::$typeLabels,
+        ]);
     }
 
     /**
@@ -69,6 +76,7 @@ class CertificationController extends Controller
                 "description"   => $request->input('description'),
                 "keyword"       => $request->input('keyword'),
                 "status"        => $request->input('status'),
+                "type"          => $request->input('type', Certification::TYPE_CHUNG_NHAN),
             ]);
 
             $listImages = json_decode($request->input('data-images', '{}'));
@@ -119,6 +127,7 @@ class CertificationController extends Controller
         $certification    = Certification::find($id);
         return view('admin.certification.edit', [
             'certification'       => $certification,
+            'typeLabels'          => Certification::$typeLabels,
         ]);
     }
 
@@ -149,6 +158,7 @@ class CertificationController extends Controller
             "description"   => $request->input('description'),
             "keyword"       => $request->input('keyword'),
             "status"        => $request->input('status'),
+            "type"          => $request->input('type', Certification::TYPE_CHUNG_NHAN),
         ]);
         $newCertification->save();
         $listLink = [];

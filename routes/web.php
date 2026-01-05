@@ -50,6 +50,8 @@ Route::get('/video/{slug}', 'Front\VideoController@videoDetail')->name('video-de
 Route::get('/gallery', 'Front\GalleryController@index')->name('gallery');
 Route::get('/gallery/{slug}', 'Front\GalleryController@detail')->name('gallery-detail');
 Route::get('/certification', 'Front\CertificationController@index')->name('certification');
+Route::get('/chung-nhan', 'Front\CertificationController@chungNhan')->name('chung-nhan');
+Route::get('/xet-nghiem', 'Front\CertificationController@xetNghiem')->name('xet-nghiem');
 Route::get('/certification/{slug}', 'Front\CertificationController@detail')->name('certification-detail');
 
 Route::get('/giai-phap-tll', 'Front\SolutionController@index')->name('giai-phap-tll');

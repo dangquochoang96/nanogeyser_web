@@ -43,7 +43,17 @@
                             <input type="text" name="name" class="form-control" value="{{$filter['name']}}">
                         </div>
                     </div>
-
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Loại chứng chỉ</label>
+                            <select name="type" class="form-control">
+                                <option value="">-- Tất cả --</option>
+                                @foreach($typeLabels as $value => $label)
+                                    <option value="{{ $value }}" {{ $filter['type'] == $value ? 'selected' : '' }}>{{ $label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" style="margin-top: 24px;">Filter</button>
@@ -61,6 +71,7 @@
                             <th style="width:52px;" class="text-center">STT</th>
                             <th class="text-center">Ảnh</th>
                             <th class="text-center">Tên thư viện ảnh</th>
+                            <th class="text-center">Loại</th>
                             <th style="width: 150px;" class="text-center"></th>
                         </tr>
                         </thead>
@@ -74,6 +85,11 @@
                                     <p>{{$certification->certification_code}}</p>
                                 </td>
                                 <td>{{$certification->name}}</td>
+                                <td class="text-center">
+                                    <span class="label {{ $certification->type == 1 ? 'label-success' : 'label-info' }}">
+                                        {{ $certification->type_label }}
+                                    </span>
+                                </td>
                                 <td>
                                     <a href="{{route('certifications.edit', ['id' => $certification->id])}}"
                                        class="btn btn-sm btn-info">sửa</a>
