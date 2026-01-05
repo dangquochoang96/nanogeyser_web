@@ -7,8 +7,8 @@
                             <h4>Thông tin hỗ trợ</h4>
                             <ul class="ul-none menuf2">
                                 <li><a href="/blog/nano-geyser-thuong-hieu-duy-nhat-duoc-bao-ho-tai-viet-nam-39">Bảo hộ thương hiệu</a></li>
-                                <li><a href="/certification">Chứng chỉ</a></li>
-                                <li><a href="/certification/ket-qua-thu-nghiem-may-loc-nuoc-nano-geyser-50">Xét nghiệm</a></li>
+                                <li><a href="/chung-nhan">Chứng chỉ</a></li>
+                                <li><a href="/xet-nghiem">Xét nghiệm</a></li>
                                 <li><a href="/blog">Tin tức</a></li>
                                 <li><a href="/blog/cate/hanh-trinh-thien-nguyen-1">Thiện nguyện</a></li>
                                 <li><a href="/certification/chung-nhan-chat-luong-tcvn-119782017-46">Giấy chứng nhận phù hợp tiêu chuẩn</a></li>

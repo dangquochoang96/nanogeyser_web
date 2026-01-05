@@ -33,15 +33,58 @@ class CertificationController extends Controller
 
     public function detail($slug)
     {
-        $certification = Certification::find(last(explode('-', $slug)));
+        // Thử tìm theo ID ở cuối slug
+        $id = last(explode('-', $slug));
+        $certification = Certification::find($id);
+        
+        // Nếu không tìm thấy theo ID, thử tìm theo slug
+        if (!$certification) {
+            $certification = Certification::where('slug', $slug)->first();
+        }
+        
+        if (!$certification) {
+            abort(404);
+        }
+        
         $certification->view++;
         $certification->save();
-        $certificationRelation = Certification::where('id','!=',$certification->id)
+        
+        $certificationRelation = Certification::where('id', '!=', $certification->id)
                                     ->take(8)
                                     ->get();
         return view('watch.certificationDetail', [
         	'certification'         => $certification,
             'certificationRelation' => $certificationRelation,
+        ]);
+    }
+
+    /**
+     * Hiển thị danh sách Chứng Nhận
+     */
+    public function chungNhan()
+    {
+        $certifications = Certification::where('status', 1)
+                        ->where('type', Certification::TYPE_CHUNG_NHAN)
+                        ->orderBy('id', 'desc')
+                        ->paginate(12);
+        return view('watch.certification', [
+            'certification'         => $certifications,
+            'pageTitle'             => 'Chứng Nhận',
+        ]);
+    }
+
+    /**
+     * Hiển thị danh sách Xét Nghiệm
+     */
+    public function xetNghiem()
+    {
+        $certifications = Certification::where('status', 1)
+                        ->where('type', Certification::TYPE_XET_NGHIEM)
+                        ->orderBy('id', 'desc')
+                        ->paginate(12);
+        return view('watch.certification', [
+            'certification'         => $certifications,
+            'pageTitle'             => 'Xét Nghiệm',
         ]);
     }
 }
