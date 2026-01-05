@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 @section('head')
 <link href="{{ asset('quantri/theme/assets/global/plugins/icheck/skins/all.css') }}" rel="stylesheet" type="text/css"/>
+<style>
+.select2-container { width: 100% !important; }
+.select2-container .select2-selection--single { height: 34px; border: 1px solid #c2cad8; border-radius: 4px; }
+.select2-container--default .select2-selection--single .select2-selection__rendered { line-height: 34px; }
+.select2-container--default .select2-selection--single .select2-selection__arrow { height: 32px; }
+</style>
 @endsection
 @section('content')
     <h3 class="page-title">
@@ -101,25 +107,53 @@
 <script src="{{ asset('quantri/theme/assets/global/plugins/icheck/icheck.min.js') }}" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
-    function filterDistricts(provinceCode) {
-        $('#district-select option').each(function() {
-            var $opt = $(this);
-            var districtProvince = $opt.data('province');
-            
-            if ($opt.val() === '') {
-                $opt.show();
-            } else if (provinceCode === '' || String(districtProvince) === String(provinceCode)) {
-                $opt.show();
-            } else {
-                $opt.hide();
-            }
+    var currentDistrict = '{{ $dealer->district_code }}';
+    
+    // Store all districts data
+    var allDistricts = [];
+    $('#district-select option').each(function() {
+        if ($(this).val() !== '') {
+            allDistricts.push({
+                id: $(this).val(),
+                text: $(this).text(),
+                province: $(this).data('province')
+            });
+        }
+    });
+    
+    // Initialize Select2 for province
+    $('#province-select').select2({
+        placeholder: '-- Chọn tỉnh/thành phố --',
+        allowClear: true
+    });
+    
+    function updateDistrictSelect(provinceCode, selectedValue) {
+        // Clear current options
+        $('#district-select').empty();
+        $('#district-select').append('<option value="">-- Chọn quận/huyện --</option>');
+        
+        // Add filtered districts
+        if (provinceCode) {
+            allDistricts.forEach(function(district) {
+                if (String(district.province) === String(provinceCode)) {
+                    var selected = (selectedValue && String(district.id) === String(selectedValue)) ? ' selected' : '';
+                    $('#district-select').append('<option value="' + district.id + '"' + selected + '>' + district.text + '</option>');
+                }
+            });
+        }
+        
+        // Reinitialize Select2
+        $('#district-select').select2({
+            placeholder: '-- Chọn quận/huyện --',
+            allowClear: true
         });
     }
     
-    $('#province-select').change(function() {
-        var provinceCode = $(this).val();
-        filterDistricts(provinceCode);
-        $('#district-select').val('');
+    // Initialize district select with current value
+    updateDistrictSelect($('#province-select').val(), currentDistrict);
+    
+    $('#province-select').on('change', function() {
+        updateDistrictSelect($(this).val(), null);
     });
 });
 </script>

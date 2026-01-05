@@ -130,8 +130,8 @@
             <div class="title-home">GIẢI PHÁP LỌC NƯỚC</div>
             <div class="tab-content relative">
                 <div id="solutions-tab" class="tab-pane fade in active">
-                    <div id="owl-solutions" class="ul-spmoi owl-carousel">
-                        <div class="item">
+                    <div class="solutions-grid">
+                        <div class="solution-item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-nha-dan">
                                     <img src="/product_images/giaiphaploctong.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự">
@@ -142,7 +142,7 @@
                                 <p class="solution-des">Giải Pháp Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="solution-item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-phong-bep">
                                     <img src="/product_images/giaiphapphongbep.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Bếp">
@@ -153,7 +153,7 @@
                                 <p class="solution-des">Giải Pháp Lọc Phòng Bếp</p>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="solution-item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-phong-khach">
                                     <img src="/product_images/giaiphapphongkhach.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Phòng Khách">
@@ -164,7 +164,7 @@
                                 <p class="solution-des">Giải Pháp Lọc Phòng Khách</p>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="solution-item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-cao-cap">
                                     <img src="/product_images/giaiphapcaocap.jpg" class="img-responsive" alt="Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm">
@@ -175,7 +175,7 @@
                                 <p class="solution-des">Giải Pháp Lọc Dành Cho Khách Hàng Cao Cấp - Máy Điện Phân Ion Kiềm</p>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="solution-item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-combo">
                                     <img src="/product_images/giaiphapcombonhamoi.jpg" class="img-responsive" alt="Giải pháp combo dành cho nhà mới">
@@ -186,7 +186,7 @@
                                 <p class="solution-des">Giải Pháp Combo Dành Cho Nhà Mới</p>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="solution-item">
                             <div class="product-box solution-box">
                                 <a class="img-product-h" href="/giai-phap-tll">
                                     <img src="/product_images/giaiphapthayloiloc.jpg" class="img-responsive" alt="Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc">
@@ -257,21 +257,34 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var owl = $("#owl-solutions");
-            owl.owlCarousel({
-                items: 3,
-                autoPlay: 10000,
-                pagination: true,
-                navigation: false,
-                itemsDesktop: [1199, 3],
-                itemsDesktopSmall: [979, 3],
-                itemsTablet: [768, 1],
-                itemsMobile: [479, 1]
-            });
-        });
-    </script>
+    
+    <style>
+    /* Grid layout cho giải pháp lọc nước - hiển thị tất cả không dùng slider */
+    .solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        padding: 20px 0;
+    }
+    
+    .solution-item {
+        width: 100%;
+    }
+    
+    @media (max-width: 991px) {
+        .solutions-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .solutions-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+    </style>
     
     <style>
     /* Style cho ảnh giải pháp lọc nước thành hình vuông */
@@ -379,7 +392,7 @@
         <div class="container">
             <div class="title-home">VÌ SAO NÊN CHỌN NANO GEYSER</div>
             <p class="des-tit">Tự hào là một trong những đơn vị nhập khẩu, lắp ráp và phân phối máy lọc nước Nano Geyser. Với hơn
-                5 năm kinh nghiệm tư vấn, lắp đặt máy lọc nước Nano Geyser cho hàng triswwwwwwwwệu gia đình Việt. Với những giá trị cốt
+                5 năm kinh nghiệm tư vấn, lắp đặt máy lọc nước Nano Geyser cho hàng triệu gia đình Việt. Với những giá trị cốt
                 lõi <b> Đổi mới mỗi ngày - Lấy khách hàng làm trung tâm & luôn luôn tận tâm - Cam kết vượt trội</b>
             </p>
             <div class="box-gt">
