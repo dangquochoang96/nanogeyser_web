@@ -23,11 +23,19 @@ class CertificationController extends Controller
      */
     public function index()
     {
-        $certifications      = Certification::where('status', 1)
+        $chungNhan = Certification::where('status', 1)
+                        ->where('type', Certification::TYPE_CHUNG_NHAN)
                         ->orderBy('id', 'desc')
-        				->paginate(12);
+                        ->paginate(12);
+        
+        $xetNghiem = Certification::where('status', 1)
+                        ->where('type', Certification::TYPE_XET_NGHIEM)
+                        ->orderBy('id', 'desc')
+                        ->paginate(12);
+        
         return view('watch.certification', [
-            'certification'         => $certifications,
+            'chungNhan' => $chungNhan,
+            'xetNghiem' => $xetNghiem,
         ]);
     }
 
@@ -68,7 +76,8 @@ class CertificationController extends Controller
                         ->orderBy('id', 'desc')
                         ->paginate(12);
         return view('watch.certification', [
-            'certification'         => $certifications,
+            'chungNhan'         => $certifications,
+            'xetNghiem'         => [],
             'pageTitle'             => 'Chứng Nhận',
         ]);
     }
@@ -83,7 +92,8 @@ class CertificationController extends Controller
                         ->orderBy('id', 'desc')
                         ->paginate(12);
         return view('watch.certification', [
-            'certification'         => $certifications,
+            'xetNghiem'         => $certifications,
+            'chungNhan'         => [],
             'pageTitle'             => 'Xét Nghiệm',
         ]);
     }
