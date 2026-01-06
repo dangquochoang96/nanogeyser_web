@@ -133,11 +133,11 @@
                     <div class="solutions-grid">
                         <div class="solution-item">
                             <div class="product-box solution-box">
-                                <a class="img-product-h" href="/giai-phap-nha-dan">
+                                <a class="img-product-h" href="/giai-phap-loc-tong">
                                     <img src="/product_images/giaiphaploctong.jpg" class="img-responsive" alt="GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-nha-dan">GIẢI PHÁP LỌC TỔNG</a>
+                                    <a href="/giai-phap-loc-tong">GIẢI PHÁP LỌC TỔNG</a>
                                 </h3>
                                 <p class="solution-des">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
                             </div>
@@ -188,11 +188,11 @@
                         </div>
                         <div class="solution-item">
                             <div class="product-box solution-box">
-                                <a class="img-product-h" href="/giai-phap-tll">
+                                <a class="img-product-h" href="/giai-phap-thay-loi-loc">
                                     <img src="/product_images/giaiphapthayloiloc.jpg" class="img-responsive" alt="Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc">
                                 </a>
                                 <h3 class="product-name">
-                                    <a href="/giai-phap-tll">GIẢI PHÁP THAY LÕI LỌC</a>
+                                    <a href="/giai-phap-thay-loi-loc">GIẢI PHÁP THAY LÕI LỌC</a>
                                 </h3>
                                 <p class="solution-des">Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc</p>
                             </div>

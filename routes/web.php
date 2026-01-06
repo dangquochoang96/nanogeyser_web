@@ -54,12 +54,12 @@ Route::get('/chung-nhan', 'Front\CertificationController@chungNhan')->name('chun
 Route::get('/xet-nghiem', 'Front\CertificationController@xetNghiem')->name('xet-nghiem');
 Route::get('/certification/{slug}', 'Front\CertificationController@detail')->name('certification-detail');
 
-Route::get('/giai-phap-tll', 'Front\SolutionController@index')->name('giai-phap-tll');
+Route::get('/giai-phap-thay-loi-loc', 'Front\SolutionController@index')->name('giai-phap-thay-loi-loc');
 Route::get('/giai-phap-combo', 'Front\SolutionController@index')->name('giai-phap-combo');
 Route::get('/giai-phap-cao-cap', 'Front\SolutionController@index')->name('giai-phap-cao-cap');
 Route::get('/giai-phap-phong-khach', 'Front\SolutionController@index')->name('giai-phap-phong-khach');
 Route::get('/giai-phap-phong-bep', 'Front\SolutionController@index')->name('giai-phap-phong-bep');
-Route::get('/giai-phap-nha-dan', 'Front\SolutionController@index')->name('giai-phap-nha-dan');
+Route::get('/giai-phap-loc-tong', 'Front\SolutionController@index')->name('giai-phap-loc-tong');
 
 Route::get('/he-thong-dai-ly', 'Front\DealerController@index')->name('he-thong-dai-ly');
 Route::get('/api/districts', 'Front\DealerController@getDistricts');

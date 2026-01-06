@@ -18,7 +18,7 @@ class SolutionController extends Controller
         // Cấu trúc mới: mỗi ảnh có thể có nhiều hotspot (vùng click)
         // hotspots: mảng các vùng click với tọa độ % (top, left, width, height), link, và tên sản phẩm
         $slides = [
-            'giai-phap-tll' => [
+            'giai-phap-thay-loi-loc' => [
                 ['image' => '0001.jpg', 'hotspots' => []],
                 ['image' => '0002.jpg', 'hotspots' => [
                     ['top' => 13, 'left' => 5, 'width' => 52, 'height' => 20, 'link' => 'https://nanogeyser.com/loi-loc-nano-geyser', 'name' => 'Lõi lọc Nano Geyser'],
@@ -79,7 +79,7 @@ class SolutionController extends Controller
                     ['top' => 10, 'left' => 3, 'width' => 95, 'height' => 31, 'link' => 'https://nanogeyser.com/may-loc-nuoc-nano-geyser-gm1-b35', 'name' => 'Máy lọc nước Nano Geyser GM1-B35'],
                 ]],
             ],
-            'giai-phap-nha-dan' => [
+            'giai-phap-loc-tong' => [
                 ['image' => 'nhadan1.png', 'hotspots' => []],
                 ['image' => 'nhadan2.png', 'hotspots' => [
                     ['top' => 13, 'left' => 3, 'width' => 95, 'height' => 31, 'link' => 'https://nanogeyser.com/loc-tong-tu-truong-disruptor-nano-geyser-gn-lt03d', 'name' => 'Lọc Tổng Từ Trường Disruptor Nano Geyser GN-LT03D'],
