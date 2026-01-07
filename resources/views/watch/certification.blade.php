@@ -51,7 +51,7 @@
     <!-- Xét nghiệm section -->
     <div class="dm-child dm-news" style="margin-top: 40px">
         <div class="tit-child">
-            <h1>Xét Nghiệm</h1>
+            <h1>Kết Quả Xét Nghiệm</h1>
         </div>
         @if(count($xetNghiem) > 0)
         <div class="row">
