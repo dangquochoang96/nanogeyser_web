@@ -23,7 +23,7 @@ Route::get('/dang-ky-nhan-qua-mien-phi', 'Front\ContactController@nhanqua');
 Route::post('/dang-ky-nhan-qua-mien-phi', 'Front\ContactController@submit');
 Route::get('/', 'Front\IndexController@index');
 Route::get('/search', 'Front\IndexController@search');
-Route::get('/ve-chung-toi', 'Front\IndexController@aboutUs');
+Route::get('/ve-chung-toi', 'Front\AboutUsController@index');
 Route::get('/lien-he', 'Front\ContactController@index');
 Route::post('/gui-lien-he', 'Front\ContactController@contactMe');
 Route::post('/subscribe', 'Front\ContactController@subscribe');
