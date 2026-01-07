@@ -113,26 +113,6 @@ class IndexController extends Controller
         ]);
     }
 
-    public function aboutUs(Request $request)
-    {
-        $data = Page::where('slug', 've-chung-toi')
-            ->first();
-        return view('watch.aboutUs', [
-            'data' => $data
-        ]);
-    }
-    /***
-     * @param         $slug
-     *
-     * @param Request $request
-     *
-     *
-     * Nếu slug trùng với cate thì trả về cate
-     * Nếu không tìm kiếm sản phẩm (nếu không được nữa nhảy về 404)
-     *
-     * @return mixed
-     */
-
     public function showBySlug($slug, Request $request)
     {
         $category = ProductCategory::where('slug', $slug)->first();
