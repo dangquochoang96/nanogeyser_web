@@ -26,6 +26,7 @@ class Certification extends Model
             'keyword',
             'status',
             'type',
+            'order',
         ];
 
     public function getTypeLabelAttribute()

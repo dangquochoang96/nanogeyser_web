@@ -68,6 +68,8 @@ class IndexController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
         $certification = Certification::where('status', 1)
+            ->orderBy('order', 'asc')
+            ->orderBy('id', 'desc')
             ->take(4)
             ->get();
         return view('watch.home', [

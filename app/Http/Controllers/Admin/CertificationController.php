@@ -77,6 +77,7 @@ class CertificationController extends Controller
                 "keyword"       => $request->input('keyword'),
                 "status"        => $request->input('status'),
                 "type"          => $request->input('type', Certification::TYPE_CHUNG_NHAN),
+                "order"         => $request->input('order', 0),
             ]);
 
             $listImages = json_decode($request->input('data-images', '{}'));
@@ -159,6 +160,7 @@ class CertificationController extends Controller
             "keyword"       => $request->input('keyword'),
             "status"        => $request->input('status'),
             "type"          => $request->input('type', Certification::TYPE_CHUNG_NHAN),
+            "order"         => $request->input('order', 0),
         ]);
         $newCertification->save();
         $listLink = [];
