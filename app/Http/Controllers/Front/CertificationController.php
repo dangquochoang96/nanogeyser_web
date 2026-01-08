@@ -24,7 +24,7 @@ class CertificationController extends Controller
     public function index()
     {
         $certifications      = Certification::where('status', 1)
-                        ->orderBy('order', 'asc')
+                        ->orderBy('order', 'asc') ;
         $chungNhan = Certification::where('status', 1)
                         ->where('type', Certification::TYPE_CHUNG_NHAN)
                         ->orderBy('id', 'desc')
