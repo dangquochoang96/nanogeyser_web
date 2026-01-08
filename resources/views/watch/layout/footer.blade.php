@@ -11,7 +11,7 @@
                                 <li><a href="/xet-nghiem">Xét nghiệm</a></li>
                                 <li><a href="/blog">Tin tức</a></li>
                                 <li><a href="/blog/cate/hanh-trinh-thien-nguyen-1">Thiện nguyện</a></li>
-                                <li><a href="/certification/chung-nhan-chat-luong-tcvn-119782017-46">Giấy chứng nhận phù hợp tiêu chuẩn</a></li>
+                                <li><a href="/certification/chung-nhan-tcvn-119782017-may-loc-nuoc-ro-nano-ion-kiem-59">Giấy chứng nhận phù hợp tiêu chuẩn</a></li>
                                 <li><a href='http://online.gov.vn/Home/WebDetails/136086'><img alt='' title='' width="200px" src='/front/image/logoSaleNoti.png'/></a></li>
                             </ul>
                         </li>

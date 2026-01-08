@@ -139,7 +139,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-loc-tong">GIẢI PHÁP LỌC TỔNG</a>
                                 </h3>
-                                <p class="solution-des">GIẢI PHÁP Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
+                                <p class="solution-des">Giải Pháp Lọc Đầu Nguồn Cho Nhà Dân, Chung Cư, Biệt Thự</p>
                             </div>
                         </div>
                         <div class="solution-item">
@@ -150,7 +150,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-phong-bep">GIẢI PHÁP PHÒNG BẾP</a>
                                 </h3>
-                                <p class="solution-des">GIẢI PHÁP Lọc Phòng Bếp</p>
+                                <p class="solution-des">Giải Pháp Lọc Phòng Bếp</p>
                             </div>
                         </div>
                         <div class="solution-item">
@@ -161,7 +161,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-phong-khach">GIẢI PHÁP PHÒNG KHÁCH</a>
                                 </h3>
-                                <p class="solution-des">GIẢI PHÁP Lọc Phòng Khách</p>
+                                <p class="solution-des">Giải Pháp Lọc Phòng Khách</p>
                             </div>
                         </div>
                         <div class="solution-item">
@@ -172,7 +172,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-cao-cap">GIẢI PHÁP CAO CẤP</a>
                                 </h3>
-                                <p class="solution-des">Giải pháp lọc dành cho khách hàng cao cấp - Máy điện phân Ion Kiềm</p>
+                                <p class="solution-des">Giải Pháp Lọc Dành Cho Khách Hàng Cao Cấp - Máy Điện Phân Ion Kiềm</p>
                             </div>
                         </div>
                         <div class="solution-item">
@@ -183,7 +183,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-combo">GIẢI PHÁP COMBO NHÀ MỚI</a>
                                 </h3>
-                                <p class="solution-des">Giải pháp combo dành cho nhà mới</p>
+                                <p class="solution-des">Giải Pháp Combo Dành Cho Nhà Mới</p>
                             </div>
                         </div>
                         <div class="solution-item">
@@ -194,7 +194,7 @@
                                 <h3 class="product-name">
                                     <a href="/giai-phap-thay-loi-loc">GIẢI PHÁP THAY LÕI LỌC</a>
                                 </h3>
-                                <p class="solution-des">Giải pháp thay lõi lọc cho nhà đã có hệ thống lọc</p>
+                                <p class="solution-des">Giải Pháp Thay Lõi Lọc Dành Cho Nhà Đã Có Hệ Thống Lọc</p>
                             </div>
                         </div>
                     </div>
