@@ -87,6 +87,11 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label class="control-label">Thứ tự hiển thị</label>
+                                        <input type="number" name="order" class="form-control" value="{{ $certification->order ?? 0 }}" min="0"/>
+                                        <span class="help-block">Số nhỏ hơn sẽ hiển thị trước</span>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="control-label">Seo URL</label>
                                         <input type="text" name="slug" class="form-control" value="{{ $certification->slug }}"/>
                                     </div>

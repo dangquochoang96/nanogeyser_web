@@ -23,6 +23,8 @@ class CertificationController extends Controller
      */
     public function index()
     {
+        $certifications      = Certification::where('status', 1)
+                        ->orderBy('order', 'asc')
         $chungNhan = Certification::where('status', 1)
                         ->where('type', Certification::TYPE_CHUNG_NHAN)
                         ->orderBy('id', 'desc')
@@ -73,6 +75,7 @@ class CertificationController extends Controller
     {
         $certifications = Certification::where('status', 1)
                         ->where('type', Certification::TYPE_CHUNG_NHAN)
+                        ->orderBy('order', 'asc')
                         ->orderBy('id', 'desc')
                         ->paginate(12);
         return view('watch.certification', [
@@ -89,6 +92,7 @@ class CertificationController extends Controller
     {
         $certifications = Certification::where('status', 1)
                         ->where('type', Certification::TYPE_XET_NGHIEM)
+                        ->orderBy('order', 'asc')
                         ->orderBy('id', 'desc')
                         ->paginate(12);
         return view('watch.certification', [
