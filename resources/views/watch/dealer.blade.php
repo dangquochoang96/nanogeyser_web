@@ -3,7 +3,7 @@
 @section('keywords', 'Hệ thống đại lý')
 @section('description', 'Hệ thống đại lý')
 @section('content')
-<!--Body-->
+
 <div class="bg-cate mg-0">   
     <img src="/front/image/bg-dmsp.jpg">
     <div class="tit-page">  
@@ -23,76 +23,34 @@
     </div>   
 </div>
 
-<div class="dealer-page">
-    <!-- Banner Section -->
-    <div class="dealer-banner">
-        <div class="banner-placeholder">
-            <!-- Để trống, thêm ảnh sau -->
-        </div>
-    </div>
-
-    <!-- Dealer Slider Section -->
-    <div class="dealer-slider-section">
-        <div class="container">
-            <h2 class="section-title">DANH SÁCH ĐẠI LÝ TRÊN TOÀN QUỐC</h2>
-            <div class="dealer-slider-wrapper">
-                <div class="dealer-slider" id="dealer-slider">
-                    @foreach($partners as $partner)
-                    <div class="dealer-slide-item">
-                        <div class="dealer-card">
-                            <div class="dealer-logo">
-                                @if($partner->image)
-                                <img src="{{ asset($partner->image) }}" alt="{{ $partner->name }}">
-                                @else
-                                <div class="logo-placeholder">
-                                    <i class="fa fa-building"></i>
-                                </div>
-                                @endif
-                            </div>
-                            <div class="dealer-info">
-                                <h4 class="dealer-card-name">{{ $partner->name }}</h4>
-                                @if($partner->phone)
-                                <p class="dealer-card-phone"><i class="fa fa-phone"></i> {{ $partner->phone }}</p>
-                                @endif
-                                <p class="dealer-card-address">{{ $partner->address }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+    <!-- Main Content Wrapper - Centered -->
+    <div class="dealer-content-wrapper">
+        <div class="dealer-main-container">
+            <!-- Left Sidebar -->
+            <div class="dealer-sidebar">
+                <!-- Search Box -->
+                <div class="dealer-search-box">
+                    <input type="text" id="search-input" class="search-input" placeholder="Tìm kiếm theo tên đại lý, tỉnh/Tp, quận/huyện">
+                    <button id="search-submit-btn" class="search-submit-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button id="filter-toggle-btn" class="filter-toggle-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="21" x2="4" y2="14"></line>
+                            <line x1="4" y1="10" x2="4" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="3"></line>
+                            <line x1="20" y1="21" x2="20" y2="16"></line>
+                            <line x1="20" y1="12" x2="20" y2="3"></line>
+                            <line x1="1" y1="14" x2="7" y2="14"></line>
+                            <line x1="9" y1="8" x2="15" y2="8"></line>
+                            <line x1="17" y1="16" x2="23" y2="16"></line>
+                        </svg>
+                    </button>
                 </div>
-                <div class="slider-dots" id="slider-dots"></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <!-- Search Section -->
-        <div class="dealer-search-section">
-            <div class="search-header">
-                <span class="search-label">Tìm kiếm cửa hàng</span>
-                <div class="search-filters">
-                    <select id="province-select" class="filter-select">
-                        <option value="">Chọn tỉnh, thành phố</option>
-                        @foreach($provinces as $province)
-                        <option value="{{ $province->province_code }}" {{ $selectedProvince == $province->province_code ? 'selected' : '' }}>{{ $province->province_name }}</option>
-                        @endforeach
-                    </select>
-                    <select id="district-select" class="filter-select">
-                        <option value="">Chọn quận, huyện</option>
-                        @foreach($locations as $location)
-                        <option value="{{ $location->district_code }}" data-province="{{ $location->province_code }}" {{ $selectedDistrict == $location->district_code ? 'selected' : '' }}>{{ $location->district_name }}</option>
-                        @endforeach
-                    </select>
-                    <button id="search-btn" class="search-btn">TÌM KIẾM</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Results Section -->
-        <div class="dealer-results">
-            <div class="row">
                 <!-- Dealer List -->
-                <div class="col-md-5 col-sm-12">
+                <div class="dealer-list-wrapper">
                     <div class="dealer-count">
                         Tìm thấy <strong>{{ count($dealers) }}</strong> cửa hàng
                     </div>
@@ -100,11 +58,17 @@
                         @forelse($dealers as $dealer)
                         <div class="dealer-item" data-address="{{ $dealer->address }}">
                             <h4 class="dealer-name">{{ $dealer->name }}</h4>
-                            <p class="dealer-address">{{ $dealer->address }}</p>
+                            <p class="dealer-address">
+                                <i class="fa fa-map-marker"></i> {{ $dealer->address }}
+                            </p>
                             @if($dealer->phone)
-                            <p class="dealer-phone"><i class="fa fa-phone"></i> {{ $dealer->phone }}</p>
+                            <p class="dealer-phone">
+                                <i class="fa fa-phone"></i> {{ $dealer->phone }}
+                            </p>
                             @endif
-                            <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($dealer->address) }}" target="_blank" class="get-directions">Get Directions</a>
+                            <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($dealer->address) }}" target="_blank" class="get-directions">
+                                <i class="fa fa-location-arrow"></i>
+                            </a>
                         </div>
                         @empty
                         <div class="no-dealers">
@@ -113,31 +77,74 @@
                         @endforelse
                     </div>
                 </div>
-                
-                <!-- Map -->
-                <div class="col-md-7 col-sm-12">
-                    <div id="dealer-map">
-                        @if(count($dealers) > 0)
-                        <iframe 
-                            src="https://maps.google.com/maps?q={{ urlencode($dealers->first()->address) }}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                            width="100%" 
-                            height="550" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                        @else
-                        <iframe 
-                            src="https://maps.google.com/maps?q=Máy+lọc+nước+Nano+Geyser&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                            width="100%" 
-                            height="550" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                        @endif
+            </div>
+
+            <!-- Right Map -->
+            <div class="dealer-map-container">
+                <div id="dealer-map">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Máy+lọc+nước+Nano+Geyser&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div id="filter-modal" class="filter-modal">
+        <div class="filter-modal-content">
+            <div class="filter-modal-header">
+                <h3>Bộ lọc</h3>
+                <button class="filter-close-btn">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="filter-modal-body">
+                <div class="filter-section">
+                    <label class="filter-label">VỊ TRÍ</label>
+                    
+                    <div class="filter-group">
+                        <label class="filter-group-label">Tỉnh/Thành phố</label>
+                        <select id="province-select" class="filter-select">
+                            <option value="">Chọn tỉnh/thành phố</option>
+                            @foreach($provinces as $province)
+                            <option value="{{ $province->province_code }}" {{ $selectedProvince == $province->province_code ? 'selected' : '' }}>{{ $province->province_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-group-label">Quận/Huyện</label>
+                        <select id="district-select" class="filter-select">
+                            <option value="">Chọn quận/huyện</option>
+                            @foreach($locations as $location)
+                            <option value="{{ $location->district_code }}" data-province="{{ $location->province_code }}" {{ $selectedDistrict == $location->district_code ? 'selected' : '' }}>{{ $location->district_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+
+                <div class="filter-section">
+                    <label class="filter-label">KÊNH BÁN HÀNG</label>
+                    <div class="filter-checkbox-group">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="dealer-type" value="dealer">
+                            <span>Đại lý</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="distributor-type" value="distributor">
+                            <span>Nhà phân phối</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-modal-footer">
+                <button id="clear-filter-btn" class="clear-filter-btn">XÓA BỘ LỌC</button>
+                <button id="apply-filter-btn" class="apply-filter-btn">XÁC NHẬN</button>
             </div>
         </div>
     </div>
@@ -145,223 +152,438 @@
 
 
 <style>
-/* Banner Section */
-.dealer-banner {
-    width: 100%;
+/* Reset and Base */
+.dealer-page {
+    margin: 0;
+    padding: 0;
     background: #f5f5f5;
 }
 
-.banner-placeholder {
-    width: 100%;
-    min-height: 400px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Header with Blue Background */
+.dealer-header {
+    background: linear-gradient(135deg, #1e88e5 0%, #00acc1 100%);
+    padding: 30px 0;
 }
 
-.banner-placeholder img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+.dealer-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Dealer Slider Section */
-.dealer-slider-section {
-    padding: 40px 0;
-    background: #fff;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 24px;
+.dealer-title {
+    color: #fff;
+    font-size: 28px;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 30px;
-    text-transform: uppercase;
+    margin: 0;
 }
 
-.dealer-slider-wrapper {
-    position: relative;
+/* Content Wrapper - Centered Container */
+.dealer-content-wrapper {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Main Container */
+.dealer-main-container {
+    display: flex;
+    height: 700px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
     overflow: hidden;
 }
 
-.dealer-slider {
+/* Left Sidebar */
+.dealer-sidebar {
+    width: 380px;
+    background: #fff;
     display: flex;
-    transition: transform 0.5s ease;
+    flex-direction: column;
+    border-right: 1px solid #e0e0e0;
 }
 
-.dealer-slide-item {
-    flex: 0 0 20%;
-    padding: 0 10px;
+/* Search Box */
+.dealer-search-box {
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    gap: 0;
+}
+
+.dealer-search-box .search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-right: none;
+    font-size: 14px;
+    outline: none;
     box-sizing: border-box;
 }
 
-.dealer-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    height: 100%;
-    min-height: 280px;
-}
-
-.dealer-logo {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-.dealer-logo img {
-    max-width: 100%;
-    max-height: 80px;
-    object-fit: contain;
-}
-
-.logo-placeholder {
-    width: 80px;
-    height: 80px;
-    background: #f0f0f0;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo-placeholder i {
-    font-size: 32px;
+.dealer-search-box .search-input::placeholder {
     color: #999;
 }
 
-.dealer-card-name {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-    min-height: 40px;
-}
-
-.dealer-card-phone {
-    font-size: 14px;
-    color: #e74c3c;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.dealer-card-phone i {
-    margin-right: 5px;
-}
-
-.dealer-card-address {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.4;
-}
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.slider-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.slider-dot.active {
-    background: #333;
-}
-
-/* Search Section */
-.dealer-page .container {
-    padding: 30px 15px;
-}
-
-.dealer-search-section {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
-}
-
-.search-header {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.search-label {
-    font-weight: bold;
-    font-size: 16px;
-    color: #333;
-}
-
-.search-filters {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    flex: 1;
-}
-
-.filter-select {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 200px;
-    font-size: 14px;
-    background: #fff;
-}
-
-.search-btn {
-    background: #65A63A;
+.search-submit-btn {
+    background: #00d447ff;
     color: #fff;
     border: none;
-    padding: 10px 30px;
-    border-radius: 4px;
-    font-weight: bold;
+    border: 1px solid #00d447ff;
+    padding: 12px 20px;
     cursor: pointer;
     transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.search-btn:hover {
-    background: #5a9534;
+.search-submit-btn:hover {
+    background: #1fab4eff;
 }
 
-/* Results Section */
-.dealer-results {
+.search-submit-btn i {
+    font-size: 16px;
+}
+
+.filter-toggle-btn {
     background: #fff;
-    border: 1px solid #e0e0e0;
+    color: #00d447ff;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-toggle-btn:hover {
+    background: #f5f5f5;
+}
+
+.filter-toggle-btn i {
+    font-size: 16px;
+}
+
+/* Dealer List Wrapper */
+.dealer-list-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
 .dealer-count {
     padding: 15px 20px;
-    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
     font-size: 14px;
     color: #666;
 }
 
 .dealer-list {
-    max-height: 500px;
+    flex: 1;
     overflow-y: auto;
+    background: #fff;
+}
+
+/* Dealer Item */
+.dealer-item {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.dealer-item:hover {
+    background: #f9f9f9;
+}
+
+.dealer-item.active {
+    background: #e3f2fd;
+    border-left: 4px solid #00d447ff;
+}
+
+.dealer-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.dealer-address {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 8px 0;
+    line-height: 1.6;
+    padding-right: 30px;
+}
+
+.dealer-address i {
+    color: #00d447ff;
+    margin-right: 6px;
+    font-size: 13px;
+}
+
+.dealer-phone {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.dealer-phone i {
+    color: #00d447ff;
+    margin-right: 6px;
+}
+
+.get-directions {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00d447ff;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.get-directions:hover {
+    color: #00a73dff;
+}
+
+.no-dealers {
+    padding: 40px 20px;
+    text-align: center;
+    color: #999;
+}
+
+/* Right Map Container */
+.dealer-map-container {
+    flex: 1;
+    position: relative;
+    background: #f5f5f5;
+}
+
+#dealer-map {
+    width: 100%;
+    height: 100%;
+}
+
+#dealer-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Filter Modal */
+.filter-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-modal.active {
+    display: flex;
+}
+
+.filter-modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.filter-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.filter-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.filter-modal-body {
+    padding: 20px;
+}
+
+.filter-section {
+    margin-bottom: 30px;
+}
+
+.filter-label {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group-label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background: #fff;
+    color: #999;
+    outline: none;
+}
+
+.filter-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.filter-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.filter-checkbox span {
+    user-select: none;
+}
+
+.filter-modal-footer {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.clear-filter-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: #fff;
+    color: #00d447ff;
+    border: 1px solid #00d447ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.clear-filter-btn:hover {
+    background: #f5f5f5;
+}
+
+.apply-filter-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: #00d447ff;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.apply-filter-btn:hover {
+    background: #00c11dff;
+}
+
+/* Results Section - Full Width Layout */
+.dealer-results-wrapper {
+    height: calc(100vh - 200px);
+    min-height: 600px;
+}
+
+.dealer-results-container {
+    display: flex;
+    height: 100%;
+}
+
+.dealer-list-column {
+    width: 35%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e0e0e0;
+}
+
+.dealer-map-column {
+    width: 65%;
+    position: relative;
+}
+
+.dealer-count {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    color: #666;
+    background: #fafafa;
+}
+
+.dealer-list {
+    flex: 1;
+    overflow-y: auto;
+    background: #fff;
 }
 
 .dealer-item {
-    padding: 15px 20px;
+    padding: 20px;
     border-bottom: 1px solid #eee;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .dealer-item:hover {
@@ -370,41 +592,61 @@
 
 .dealer-item.active {
     background: #e8f5e9;
-    border-left: 3px solid #65A63A;
+    border-left: 4px solid #00d447ff;
 }
 
 .dealer-name {
     font-size: 16px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 5px;
+    margin: 0 0 10px 0;
 }
 
 .dealer-address {
     font-size: 14px;
     color: #666;
-    margin-bottom: 5px;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+}
+
+.dealer-address i {
+    color: #00d447ff;
+    margin-right: 8px;
+    font-size: 14px;
 }
 
 .dealer-phone {
     font-size: 14px;
     color: #666;
-    margin-bottom: 5px;
+    margin: 0 0 10px 0;
+}
+
+.dealer-phone i {
+    color: #00d447ff;
+    margin-right: 8px;
 }
 
 .get-directions {
-    color: #2196F3;
+    color: #00d447ff;
     font-size: 14px;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
 }
 
 .get-directions:hover {
     text-decoration: underline;
 }
 
+.get-directions i {
+    margin-right: 5px;
+}
+
 #dealer-map {
-    height: 550px;
     width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 #dealer-map iframe {
@@ -414,57 +656,87 @@
 }
 
 .no-dealers {
-    padding: 30px;
+    padding: 40px 20px;
     text-align: center;
-    color: #666;
+    color: #999;
 }
 
 @media (max-width: 992px) {
-    .dealer-slide-item {
-        flex: 0 0 33.333%;
+    .dealer-content-wrapper {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+    
+    .dealer-main-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 600px;
+    }
+    
+    .dealer-sidebar {
+        width: 100%;
+        height: 400px;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .dealer-map-container {
+        height: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .dealer-slide-item {
-        flex: 0 0 50%;
+    .dealer-header {
+        padding: 20px 0;
     }
     
-    .banner-placeholder {
-        min-height: 200px;
+    .dealer-title {
+        font-size: 22px;
     }
     
-    .search-header {
-        flex-direction: column;
-        align-items: flex-start;
+    .dealer-content-wrapper {
+        margin: 15px auto;
+        padding: 0 10px;
     }
     
-    .search-filters {
-        width: 100%;
+    .dealer-main-container {
+        height: auto;
     }
     
-    .filter-select {
-        width: 100%;
-        min-width: auto;
+    .dealer-sidebar {
+        height: 350px;
     }
     
-    .search-btn {
-        width: 100%;
+    .dealer-map-container {
+        height: 350px;
     }
     
-    #dealer-map {
-        height: 400px;
-        margin-top: 20px;
+    .dealer-search-box .search-input {
+        font-size: 13px;
+        padding: 10px 70px 10px 12px;
     }
     
-    .dealer-list {
-        max-height: 300px;
+    .search-submit-btn,
+    .filter-toggle-btn {
+        padding: 10px 15px;
     }
-}
-
-@media (max-width: 480px) {
-    .dealer-slide-item {
-        flex: 0 0 100%;
+    
+    .filter-modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .dealer-item {
+        padding: 15px;
+    }
+    
+    .dealer-name {
+        font-size: 14px;
+    }
+    
+    .dealer-address,
+    .dealer-phone {
+        font-size: 12px;
     }
 }
 </style>
@@ -534,6 +806,25 @@ $(document).ready(function() {
         goToSlide(currentSlide + 1);
     }, 5000);
     
+    // Filter Modal Toggle
+    $('#filter-toggle-btn').click(function() {
+        $('#filter-modal').addClass('active');
+        $('body').css('overflow', 'hidden');
+    });
+    
+    $('.filter-close-btn').click(function() {
+        $('#filter-modal').removeClass('active');
+        $('body').css('overflow', 'auto');
+    });
+    
+    // Close modal when clicking outside
+    $('#filter-modal').click(function(e) {
+        if ($(e.target).is('#filter-modal')) {
+            $('#filter-modal').removeClass('active');
+            $('body').css('overflow', 'auto');
+        }
+    });
+    
     // Filter districts by province
     $('#province-select').change(function() {
         var provinceCode = $(this).val();
@@ -548,22 +839,52 @@ $(document).ready(function() {
         $('#district-select').val('');
     });
     
-    // Search button click
-    $('#search-btn').click(function() {
+    // Clear filter button
+    $('#clear-filter-btn').click(function() {
+        $('#province-select').val('');
+        $('#district-select').val('');
+        $('#dealer-type').prop('checked', false);
+        $('#distributor-type').prop('checked', false);
+        $('#search-input').val('');
+    });
+    
+    // Apply filter button
+    $('#apply-filter-btn').click(function() {
+        performSearch();
+        $('#filter-modal').removeClass('active');
+        $('body').css('overflow', 'auto');
+    });
+    
+    // Search submit button
+    $('#search-submit-btn').click(function() {
+        performSearch();
+    });
+    
+    // Search on Enter key
+    $('#search-input').keypress(function(e) {
+        if (e.which === 13) {
+            performSearch();
+        }
+    });
+    
+    // Perform search function
+    function performSearch() {
         var province = $('#province-select').val();
         var district = $('#district-select').val();
+        var searchText = $('#search-input').val();
         var url = '{{ route("he-thong-dai-ly") }}';
         var params = [];
         
         if (province) params.push('province=' + province);
         if (district) params.push('district=' + district);
+        if (searchText) params.push('search=' + encodeURIComponent(searchText));
         
         if (params.length > 0) {
             url += '?' + params.join('&');
         }
         
         window.location.href = url;
-    });
+    }
     
     // Click on dealer item to change map
     $('.dealer-item').click(function() {
